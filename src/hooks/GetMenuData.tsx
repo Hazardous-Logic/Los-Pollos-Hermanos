@@ -1,0 +1,26 @@
+import { useEffect, useState } from 'react';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from "../libs/firebase";
+
+interface MenuItemData {
+    name: string;
+    imgLink: string;
+    description: string;
+    price: number;
+    prepTime: number;
+  }
+
+export function GetMenuData() {
+  const [menu, setMenu] = useState<MenuItemData[]>([]);
+  
+  useEffect(() => {
+    async function fetchMenu() {
+      const querySnapshot = await getDocs(collection(db, "menu"));
+      const menuData = querySnapshot.docs.map((doc) => doc.data() as MenuItemData);
+      setMenu(menuData);
+    }
+    fetchMenu();
+  }, [db]);
+
+  return menu;
+}
