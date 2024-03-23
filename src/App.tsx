@@ -4,6 +4,7 @@ import Nav from './components/Nav';
 import Shop from './components/Shop';
 import Foot from './components/Foot';
 import Story from './components/Story';
+import Profile from './pages/Profile';
 import { Suspense } from 'react';
 import Loading from './components/Loading';
 import { AuthContextProvider } from './context/AuthContext';
@@ -15,10 +16,7 @@ import VerifyEmail from './pages/VerifyEmail';
 import AddMenuItem from './components/AddMenuItem';
 import { CartProvider } from "./context/CartContext";
 import { FloatingShoppingCartIcon } from './components/FloatingShoppingCartIcon';
-//import { CartProvider } from "./context/CartContext";
-// import Cart from './components/Cart';
-
-// import Profile from './components/Profile';
+import Feedback from './pages/Feedback';
 
 function App() {
   return (
@@ -36,8 +34,8 @@ function App() {
             <Route path="/verify" element={<VerifyEmail />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/add" element={<AddMenuItem />} />
-            {/* <Route path="/cart" element={<Cart />} /> */}
-            {/* <Route path="/profile/:id" element={<Profile />} /> */}
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/contact" element={<Feedback />} />
           </Routes>
         </Router>
         <FloatingShoppingCartIcon />

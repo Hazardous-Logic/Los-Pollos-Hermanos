@@ -13,7 +13,7 @@ function Nav() {
     await signOut(auth);
     navigate("/");
   };
-  //console.log(currentUser);
+  console.log(currentUser);
 
   // const userName = 'Raeolin Pillay';
   // const userEmail = 'Raeolin@live.com';
@@ -22,7 +22,7 @@ function Nav() {
 
   return (
     <div className='container mx-auto mt-5'>
-      <Navbar fluid rounded className='bg-yellow-300'>
+      <Navbar fluid rounded  className='bg-yellow-300'>
         <Navbar.Brand as={Link} to="/">
           <img src="/Los_Pollos.webp" className="mr-7 h-20 sm:h-36" alt="Logo" />
         </Navbar.Brand>
@@ -33,7 +33,7 @@ function Nav() {
               arrowIcon={true}
               inline
               label={
-                <Avatar img="/user.png" rounded bordered color="pink" size="lg">
+                <Avatar img={currentUser?.photoURL || ''}rounded color="pink" size="lg">
                   <div className="space-y-1 font-medium dark:text-white">
                     <div className='text-red-500'>Hola! {userName}</div>
                     <div className="text-sm text-red-500 dark:text-gray-400">{userEmail}</div>
@@ -45,7 +45,7 @@ function Nav() {
                 <span className="block text-sm">{userName}</span>
                 <span className="block truncate text-sm font-medium">{userEmail}</span>
               </Dropdown.Header>
-              <Dropdown.Item>My Account</Dropdown.Item>
+              <Dropdown.Item as={Link} to="/Profile">My profile</Dropdown.Item>
               <Dropdown.Item>Settings</Dropdown.Item>
               <Dropdown.Item>Orders</Dropdown.Item>
               <Dropdown.Divider />

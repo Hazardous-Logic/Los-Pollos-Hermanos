@@ -1,7 +1,3 @@
-// Home.tsx
-
-// import './Home.component.css'; // Import your CSS file for additional styles
-
 function Story() {
   return (
     <div className="container mx-auto">
