@@ -21,8 +21,8 @@ function Nav() {
   const userEmail = currentUser?.email || 'default@email.com';
 
   return (
-    <div className='container mx-auto mt-5'>
-      <Navbar fluid rounded  className='bg-yellow-300'>
+    <div className='container mx-auto  mt-5'>
+      <Navbar fluid className='bg-yellow-300 shadow-xl rounded-xl'>
         <Navbar.Brand as={Link} to="/">
           <img src="/Los_Pollos.webp" className="mr-7 h-20 sm:h-36" alt="Logo" />
         </Navbar.Brand>
@@ -63,8 +63,8 @@ function Nav() {
         </div>
         <Navbar.Collapse>
           <Navbar.Link as={NavLink} to="/" active className="text-xl">Home</Navbar.Link>
-          <Navbar.Link as={NavLink} to="/shop" className="text-xl">Shop</Navbar.Link>
-          <Navbar.Link as={NavLink} to="/order" className="text-xl">Order Online</Navbar.Link>
+          <Navbar.Link as={NavLink} to="/shop" className="text-xl">Order</Navbar.Link>
+          {/* <Navbar.Link as={NavLink} to="/order" className="text-xl">Order Online</Navbar.Link> */}
           <Navbar.Link as={NavLink} to="/story" className="text-xl">Our Story</Navbar.Link>
           <Navbar.Link as={NavLink} to="/contact" className="text-xl">Contact</Navbar.Link>
         </Navbar.Collapse>

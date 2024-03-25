@@ -26,6 +26,7 @@ function App() {
         <Router>
         <Nav />
           <Routes>
+            {/* <Route path="/load" element={<Loading />} /> */}
             <Route path="/" element={<Home />} />
             <Route path="/shop" element={<AuthPages><Shop /></AuthPages>}/>
             <Route path="/story" element={<Story />} />

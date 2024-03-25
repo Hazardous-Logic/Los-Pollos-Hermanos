@@ -2,17 +2,16 @@ import { useState } from "react";
 import { collection, setDoc, doc } from "firebase/firestore"; 
 import { db } from "../libs/firebase"; 
 import { Button } from "flowbite-react";
+import { MenuItemData } from "../hooks/GetMenuData";
 
-interface MenuItem {
-  name: string;
-  imgLink: string;
-  description: string;
-  price: number;
-  prepTime: number;
-}
-
-function AddMenuItem() {
-  const [newMenuItem, setNewMenuItem] = useState<MenuItem>({ name: "", imgLink: "", description: "", price: 0, prepTime: 0 });
+const AddMenuItem = () => {
+  const [newMenuItem, setNewMenuItem] = useState<MenuItemData>({
+     name: "", 
+     imgLink: "", 
+     description: "", 
+     price: 0, 
+     prepTime: 0 
+    });
 
   //to make sure that the fields are converted to number type correctly
   const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -74,14 +73,6 @@ function AddMenuItem() {
             <textarea className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="description" name="description" rows={3} value={newMenuItem.description} onChange={handleChange}></textarea>
           </div>
         </div>
-        {/* <div className="flex flex-wrap mx-3 mb-2">
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="prepTime">
-              Preparation Time (minutes)
-            </label>
-            <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="prepTime" type="number" name="prepTime" value={newMenuItem.prepTime} onChange={handleChange} />
-          </div>
-        </div> */}
         <Button className="mx-auto" pill color="failure" type="submit">
           Add Menu Item
         </Button>

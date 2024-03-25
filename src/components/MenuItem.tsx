@@ -25,7 +25,7 @@ export function MenuItem({
   const itemQuantity = getItemQuantity(name);
 
   return (
-    <div className=" bg-yellow-300 rounded overflow-hidden hover:shadow-lg">
+    <div className=" bg-yellow-300 rounded-xl overflow-hidden shadow-lg hover:shadow-xl">
       <img className="w-full h-48 object-cover" src={imgLink} alt={name} />
       <div className="px-6 py-4 text-center">
         <div className="font-bold text-xl mb-2">{name}</div>

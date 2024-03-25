@@ -8,7 +8,7 @@ function Home() {
       <img
         src="Home.jpg"
         alt="Home"
-        className="rounded w-full h-full"
+        className="rounded-xl w-full h-full shadow-xl"
       />
     </div>
   );
