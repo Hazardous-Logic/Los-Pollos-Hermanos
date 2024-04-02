@@ -1,13 +1,6 @@
 import { Button } from "flowbite-react";
 import { useShoppingCart } from "../context/CartContext";
-
-interface MenuItem {
-  name: string;
-  imgLink: string;
-  description: string;
-  price: number;
-  prepTime: number;
-}
+import { MenuItemData } from "../hooks/GetMenuData";
 
 export function MenuItem({
   name,
@@ -15,7 +8,7 @@ export function MenuItem({
   description,
   price,
   prepTime,
-}: MenuItem) {
+}: MenuItemData) {
   const {
     getItemQuantity,
     increaseItemQuantity,

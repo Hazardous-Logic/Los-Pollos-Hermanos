@@ -5,7 +5,7 @@ import Shop from './components/Shop';
 import Foot from './components/Foot';
 import Story from './components/Story';
 import Profile from './pages/Profile';
-import { Suspense } from 'react';
+import { Suspense} from 'react';
 import Loading from './components/Loading';
 import { AuthContextProvider } from './context/AuthContext';
 import AuthPages from './components/AuthPages';
@@ -13,10 +13,11 @@ import Login from './pages/Login';
 import ForgotPassword from './pages/ForgotPassword';
 import Signup from './pages/Signup';
 import VerifyEmail from './pages/VerifyEmail';
-import AddMenuItem from './components/AddMenuItem';
 import { CartProvider } from "./context/CartContext";
 import { FloatingShoppingCartIcon } from './components/FloatingShoppingCartIcon';
 import Feedback from './pages/Feedback';
+import DeleteMenuItem from './components/DeleteMenuItem';
+import Admin from './pages/Admin';
 
 function App() {
   return (
@@ -26,7 +27,6 @@ function App() {
         <Router>
         <Nav />
           <Routes>
-            {/* <Route path="/load" element={<Loading />} /> */}
             <Route path="/" element={<Home />} />
             <Route path="/shop" element={<AuthPages><Shop /></AuthPages>}/>
             <Route path="/story" element={<Story />} />
@@ -34,23 +34,18 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/verify" element={<VerifyEmail />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/add" element={<AddMenuItem />} />
+            <Route path="/admin" element={<Admin />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/contact" element={<Feedback />} />
+            <Route path="/delete" element={<DeleteMenuItem />} />
           </Routes>
         </Router>
         <FloatingShoppingCartIcon />
         <Foot />
         </CartProvider>
-
       </AuthContextProvider>
-
     </Suspense>
-
   );
 }
 
 export default App;
-
-
-

@@ -1,22 +1,51 @@
 import { Avatar, Dropdown, Navbar, Button } from 'flowbite-react';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { Link, NavLink , useNavigate} from 'react-router-dom';
 import { signOut } from 'firebase/auth';
-import { auth } from '../libs/firebase';
+import { auth, db } from '../libs/firebase';
+import { doc, getDoc } from 'firebase/firestore';
+import { useShoppingCart } from "../context/CartContext";
 
 function Nav() {
   const { currentUser } = useContext(AuthContext);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const { cartItems , clearCart } = useShoppingCart();
   const navigate = useNavigate();
   
   const handleLogout = async () => {
+
+    if (cartItems.length > 0) {
+      const confirmLogout = window.confirm("You have items in your cart. Are you sure you want to logout and lose your items?");
+      if (!confirmLogout) {
+        return; // Do not proceed with logout
+      }
+    }
+
     await signOut(auth);
+    clearCart();
+    setIsAdmin(false);
     navigate("/");
   };
-  console.log(currentUser);
 
-  // const userName = 'Raeolin Pillay';
-  // const userEmail = 'Raeolin@live.com';
+useEffect(() => {
+  const checkAdmin = async () => {
+    if (currentUser) {
+      const userRef = doc(db, "users", currentUser.uid);
+      const userData = await getDoc(userRef);
+      const user = userData.data();
+      console.log(currentUser);
+      console.log(user);
+      if (userData && user && user.role === 'admin') {
+        setIsAdmin(true);
+      }
+    }
+  };
+
+  checkAdmin();
+}, [currentUser]);
+
+
   const userName = currentUser?.displayName || 'Default Name';
   const userEmail = currentUser?.email || 'default@email.com';
 
@@ -64,9 +93,9 @@ function Nav() {
         <Navbar.Collapse>
           <Navbar.Link as={NavLink} to="/" active className="text-xl">Home</Navbar.Link>
           <Navbar.Link as={NavLink} to="/shop" className="text-xl">Order</Navbar.Link>
-          {/* <Navbar.Link as={NavLink} to="/order" className="text-xl">Order Online</Navbar.Link> */}
           <Navbar.Link as={NavLink} to="/story" className="text-xl">Our Story</Navbar.Link>
           <Navbar.Link as={NavLink} to="/contact" className="text-xl">Contact</Navbar.Link>
+          {isAdmin && <Navbar.Link as={NavLink} to="/admin" className="text-xl">Admin</Navbar.Link>}
         </Navbar.Collapse>
       </Navbar>
     </div>

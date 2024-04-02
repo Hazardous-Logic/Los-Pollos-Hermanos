@@ -86,7 +86,7 @@ const Feedback = () => {
                 </Button>
             </form>
         </div>
-            <Reviews></Reviews>
+            <Reviews />
             </>
         
     );
