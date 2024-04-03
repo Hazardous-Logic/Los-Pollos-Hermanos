@@ -3,6 +3,7 @@ import { useShoppingCart } from "../context/CartContext";
 import { CartItem } from "./CartItem";
 import { GetMenuData } from "../hooks/GetMenuData";
 import { Button } from "flowbite-react";
+import { useNavigate } from "react-router-dom";
 
 type ShoppingCartProps = {
   isOpen: boolean;
@@ -12,9 +13,10 @@ type ShoppingCartProps = {
 export function ShoppingCart({ isOpen, onClose }: ShoppingCartProps) {
   const { cartItems , clearCart } = useShoppingCart();
   const menu = GetMenuData();
+  
   return (
     <div className={`fixed right-0 top-5 bottom-5 transition-transform transform ${isOpen ? "translate-x-0" : "translate-x-full"}`}>
-      <div className="flex flex-col justify-between rounded border-red-700 h-full border shadow-lg bg-yellow-300 w-72 p-4">
+      <div className="flex flex-col justify-between rounded-xl border-red-700 h-full border shadow-lg bg-yellow-300 w-96 p-4">
         <div className="flex justify-between items-center">
           <h2 className="text-lg font-semibold">Cart</h2>
           <button onClick={onClose} className="p-1 rounded hover:bg-red-700">
@@ -38,7 +40,10 @@ export function ShoppingCart({ isOpen, onClose }: ShoppingCartProps) {
              </p>
              <Button color="failure" pill onClick={() =>clearCart()}>Clear Cart</Button>
         </div>
-
+        <Button className="mx-auto" pill color="success" 
+        >
+            Checkout
+          </Button>
         </div>
       </div>
     </div>

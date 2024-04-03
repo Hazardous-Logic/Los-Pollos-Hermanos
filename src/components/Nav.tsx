@@ -1,18 +1,18 @@
 import { Avatar, Dropdown, Navbar, Button } from 'flowbite-react';
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { Link, NavLink , useNavigate} from 'react-router-dom';
 import { signOut } from 'firebase/auth';
-import { auth, db } from '../libs/firebase';
-import { doc, getDoc } from 'firebase/firestore';
+import { auth } from '../libs/firebase';
 import { useShoppingCart } from "../context/CartContext";
+import { UseCheckAdmin } from "../hooks/UseCheckAdmin";
 
 function Nav() {
   const { currentUser } = useContext(AuthContext);
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = UseCheckAdmin();
   const { cartItems , clearCart } = useShoppingCart();
   const navigate = useNavigate();
-  
+
   const handleLogout = async () => {
 
     if (cartItems.length > 0) {
@@ -27,24 +27,6 @@ function Nav() {
     setIsAdmin(false);
     navigate("/");
   };
-
-useEffect(() => {
-  const checkAdmin = async () => {
-    if (currentUser) {
-      const userRef = doc(db, "users", currentUser.uid);
-      const userData = await getDoc(userRef);
-      const user = userData.data();
-      console.log(currentUser);
-      console.log(user);
-      if (userData && user && user.role === 'admin') {
-        setIsAdmin(true);
-      }
-    }
-  };
-
-  checkAdmin();
-}, [currentUser]);
-
 
   const userName = currentUser?.displayName || 'Default Name';
   const userEmail = currentUser?.email || 'default@email.com';

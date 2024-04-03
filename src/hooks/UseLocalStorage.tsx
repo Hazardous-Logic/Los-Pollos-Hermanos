@@ -1,3 +1,5 @@
+//Custom hook to save the cart data to local storage
+
 import { useEffect, useState } from "react";
 
 export function useLocalStorage<T>(key: string, initialValue: T | (() => T)) {

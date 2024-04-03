@@ -1,4 +1,3 @@
-import Nav from "./Nav";
 import Spinner from "./Spinner";
 
 const Loading = () => {

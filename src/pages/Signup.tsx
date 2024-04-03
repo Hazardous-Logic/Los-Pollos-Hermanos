@@ -64,7 +64,7 @@ const Signup = () => {
   return (
   
 
-    <div className="container mx-auto my-10 rounded py-5 bg-yellow-300 w-full md:w-2/3 lg:w-1/2">
+    <div className="container mx-auto my-10 rounded-xl py-5 bg-yellow-300 w-full md:w-2/3 lg:w-1/2">
             <h2 className="text-4xl font-medium mt-10 text-black text-center">Sign up</h2>
       <div className="auth-options w-full flex flex-col items-center justify-center">
         <GoogleLogin

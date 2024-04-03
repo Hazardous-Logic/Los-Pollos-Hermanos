@@ -40,7 +40,7 @@ const VerifyEmail = () => {
   }, []);
 
   return (
-    <div className="md:w-1/2 mx-auto my-10 py-10 rounded-md px-3 flex items-center justify-center bg-yellow-300 shadow-md">
+    <div className="md:w-1/2 mx-auto my-10 py-10 rounded-xl px-3 flex items-center justify-center bg-yellow-300 shadow-md">
       {isCheckingStatus ? (
         <div>Checking Auth Status...</div>
       ) : (
