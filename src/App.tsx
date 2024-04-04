@@ -5,7 +5,7 @@ import Shop from './components/Shop';
 import Foot from './components/Foot';
 import Story from './components/Story';
 import Profile from './pages/Profile';
-import { Suspense} from 'react';
+import { Suspense } from 'react';
 import Loading from './components/Loading';
 import { AuthContextProvider } from './context/AuthContext';
 import AuthPages from './components/AuthPages';
@@ -14,10 +14,10 @@ import ForgotPassword from './pages/ForgotPassword';
 import Signup from './pages/Signup';
 import VerifyEmail from './pages/VerifyEmail';
 import { CartProvider } from "./context/CartContext";
-import { FloatingShoppingCartIcon } from './components/FloatingShoppingCartIcon';
 import Feedback from './pages/Feedback';
-import DeleteMenuItem from './components/DeleteMenuItem';
 import Admin from './pages/Admin';
+import { ShoppingCart } from './components/ShoppingCart';
+import Checkout from './pages/Checkout';
 
 function App() {
   return (
@@ -34,14 +34,14 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/verify" element={<VerifyEmail />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/admin" element={<Admin />} />
+            <Route path="/admin" element={<AuthPages><Admin /></AuthPages>} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/contact" element={<Feedback />} />
-            <Route path="/delete" element={<DeleteMenuItem />} />
+            <Route path="/contact" element={<AuthPages><Feedback /></AuthPages>} />
+            <Route path="/checkout" element={<AuthPages><Checkout /></AuthPages>} />
           </Routes>
+          <ShoppingCart/>
+          <Foot />
         </Router>
-        <FloatingShoppingCartIcon />
-        <Foot />
         </CartProvider>
       </AuthContextProvider>
     </Suspense>
