@@ -4,7 +4,7 @@ import { CartItem } from "./CartItem";
 import { GetMenuData } from "../hooks/GetMenuData";
 import { Button } from "flowbite-react";
 import { useState } from "react";
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export function ShoppingCart() {
   const { cartItems , clearCart} = useShoppingCart();

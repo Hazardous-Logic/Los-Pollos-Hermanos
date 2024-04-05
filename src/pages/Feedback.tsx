@@ -64,12 +64,12 @@ const Feedback = () => {
                             Rating
                         </label>
                         <select className="shadow-xl appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="rating" name="rating" value={review.rating} onChange={handleChange}>
-                            <option value="0">0 (Anna Would enjoy)</option>
-                            <option value="1">1 (Nikovits said its trivial)</option>
-                            <option value="2">2 (Borsi said its okay)</option>
-                            <option value="3">3 (Asvanyi Tibor Laughed at himself)</option>
-                            <option value="4">4 (Bognar Gergo said Hmmm)</option>
-                            <option value="5">5 (Szabo Laszlo approved)</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
                         </select>
                     </div>
                 </div>

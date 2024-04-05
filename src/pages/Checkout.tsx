@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button } from "flowbite-react";
-import { collection, setDoc, doc } from "firebase/firestore"; 
+import { collection, doc, updateDoc, arrayUnion, addDoc } from "firebase/firestore"; 
 import { db } from "../libs/firebase"; 
+import { AuthContext } from "../context/AuthContext";
+import { useShoppingCart } from "../context/CartContext";
+import { useNavigate } from "react-router-dom";
 
 interface DeliveryDetails {
   fullName: string;
@@ -12,6 +15,18 @@ interface DeliveryDetails {
 }
 
 const Checkout = () => {
+
+  const { currentUser } = useContext(AuthContext);
+  const { cartItems , clearCart} = useShoppingCart();
+  const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   // Redirect to home page if cart is empty
+  //   if (cartItems.length === 0) {
+  //     navigate('/shop');
+  //   }
+  // }, [cartItems, navigate]);
+
   const [deliveryDetails, setDeliveryDetails] = useState<DeliveryDetails>({
     fullName: "",
     address: "",
@@ -28,8 +43,16 @@ const Checkout = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await setDoc(doc(collection(db, "orders"), deliveryDetails.fullName), deliveryDetails);
+      const orderRef = await addDoc(collection(db, "orders"), deliveryDetails);
+      console.log(orderRef.id);
       alert("Order placed successfully");
+      if (currentUser) {
+        // Add the order to the user's document
+        await updateDoc(doc(db, "users", currentUser.uid), {
+          orders: arrayUnion(orderRef)
+        });
+      }
+
       setDeliveryDetails({
         fullName: "",
         address: "",
@@ -37,6 +60,9 @@ const Checkout = () => {
         postalCode: "",
         phoneNumber: ""
       });
+
+     clearCart();
+
     } catch (error) {
       console.error("Error placing order: ", error);
       alert("Error placing order: " + error);
@@ -85,8 +111,8 @@ const Checkout = () => {
             <input className="shadow-xl appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="phoneNumber" type="text" name="phoneNumber" value={deliveryDetails.phoneNumber} onChange={handleChange} />
           </div>
         </div>
-        <Button className="mx-auto hover:animate-bounce" pill color="success" type="submit">
-          Place Order
+        <Button disabled={cartItems.length===0} className="mx-auto" pill color="success" type="submit">
+          {(cartItems.length===0)?("No Items in cart"):("Place Order")}
         </Button>
       </form>
     </div>
