@@ -18,6 +18,7 @@ import Feedback from './pages/Feedback';
 import Admin from './pages/Admin';
 import { ShoppingCart } from './components/ShoppingCart';
 import Checkout from './pages/Checkout';
+import Confirmation from './pages/Confirmation';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/contact" element={<AuthPages><Feedback /></AuthPages>} />
             <Route path="/checkout" element={<AuthPages><Checkout /></AuthPages>} />
+            <Route path="/confirmation" element={<AuthPages><Confirmation /></AuthPages>} />
           </Routes>
           <ShoppingCart/>
           <Foot />

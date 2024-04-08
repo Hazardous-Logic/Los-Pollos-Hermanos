@@ -3,7 +3,7 @@ import { useShoppingCart } from "../context/CartContext";
 import { CartItem } from "./CartItem";
 import { GetMenuData } from "../hooks/GetMenuData";
 import { Button } from "flowbite-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
 export function ShoppingCart() {
@@ -12,10 +12,28 @@ export function ShoppingCart() {
   const navigate = useNavigate();
   
   const [isOpen, setIsOpen] = useState(false);
+  const [total, setTotal] = useState(0);
+  const [time, setTime] = useState(0);
+
+  useEffect(() => {
+    const newTotal = cartItems.reduce((total, cartItem) => {
+      const item = menu.find((item) => item.name === cartItem.id);
+      return total + (item?.price || 0) * cartItem.input;
+    }, 0);
+    setTotal(newTotal);
+
+    const newDeliveryTime = cartItems.reduce((time, cartItem) => {
+      const item = menu.find((item) => item.name === cartItem.id);
+      return time + (item?.prepTime || 0) * cartItem.input;
+    }, 0);
+    setTime(newDeliveryTime);
+  }, [cartItems, menu]);
 
   const handleCheckout = () => {
-    navigate("/checkout"); // Navigate to the checkout page
-  };
+    setIsOpen(false)
+    navigate('/checkout', { state: { total, time } });
+
+  }
   return (
     <>
     <div className={`fixed right-0 top-5 bottom-5 transition-transform transform ${isOpen ? "translate-x-0" : "translate-x-full"}`}>
@@ -32,19 +50,16 @@ export function ShoppingCart() {
             ))}
         </div>
         <div className="border-t border-gray-300 py-2 flex justify-between">
+          
         <div className="flex space-x-5 items-center">
+          
         <p className="font-semibold text-xl">Total</p>
-          <p className="text-xl">            {
-            cartItems.reduce((total, cartItem) => {
-              const item = menu.find((item) => item.name === cartItem.id);
-              return total + (item?.price || 0) * cartItem.input;
-            }, 0)
-          } ft
-             </p>
+          <p className="text-xl">{total+"ft"}</p>
              <Button color="failure" pill onClick={() =>clearCart()}>Clear Cart</Button>
         </div>
        <Button className="mx-auto" pill color="success" onClick={handleCheckout} disabled={cartItems.length < 1}>Checkout</Button>
         </div>
+        <p className="text-xl">{time + " minutes estimated delivery time"}</p>
       </div>
     </div>
     <div className="fixed bottom-8 right-8 z-10">
