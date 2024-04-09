@@ -58,7 +58,7 @@ function Nav() {
               </Dropdown.Header>
               <Dropdown.Item as={Link} to="/Profile">My profile</Dropdown.Item>
               <Dropdown.Item>Settings</Dropdown.Item>
-              <Dropdown.Item>Orders</Dropdown.Item>
+              <Dropdown.Item as={Link} to="/Orders">Orders</Dropdown.Item>
               <Dropdown.Divider />
               <Dropdown.Item  onClick={handleLogout}>Sign out</Dropdown.Item>
 

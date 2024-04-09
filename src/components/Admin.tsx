@@ -1,6 +1,6 @@
 import { Button } from "flowbite-react";
-import AddMenuItem from "../components/AddMenuItem";
-import DeleteMenuItem from "../components/DeleteMenuItem";
+import AddMenuItem from "./AddMenuItem";
+import DeleteMenuItem from "./DeleteMenuItem";
 import { UseCheckAdmin } from "../hooks/UseCheckAdmin";
 import { useNavigate } from "react-router-dom";
 

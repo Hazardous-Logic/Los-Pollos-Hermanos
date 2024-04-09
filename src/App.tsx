@@ -4,21 +4,22 @@ import Nav from './components/Nav';
 import Shop from './components/Shop';
 import Foot from './components/Foot';
 import Story from './components/Story';
-import Profile from './pages/Profile';
+import Profile from './components/Profile';
 import { Suspense } from 'react';
 import Loading from './components/Loading';
 import { AuthContextProvider } from './context/AuthContext';
 import AuthPages from './components/AuthPages';
-import Login from './pages/Login';
-import ForgotPassword from './pages/ForgotPassword';
-import Signup from './pages/Signup';
-import VerifyEmail from './pages/VerifyEmail';
+import Login from './components/Login';
+import ForgotPassword from './components/ForgotPassword';
+import Signup from './components/Signup';
+import VerifyEmail from './components/VerifyEmail';
 import { CartProvider } from "./context/CartContext";
-import Feedback from './pages/Feedback';
-import Admin from './pages/Admin';
+import Feedback from './components/Feedback';
+import Admin from './components/Admin';
 import { ShoppingCart } from './components/ShoppingCart';
-import Checkout from './pages/Checkout';
-import Confirmation from './pages/Confirmation';
+import Checkout from './components/Checkout';
+import Confirmation from './components/Confirmation';
+import Orders from './components/Orders';
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
             <Route path="/contact" element={<AuthPages><Feedback /></AuthPages>} />
             <Route path="/checkout" element={<AuthPages><Checkout /></AuthPages>} />
             <Route path="/confirmation" element={<AuthPages><Confirmation /></AuthPages>} />
+            <Route path="/orders" element={<AuthPages><Orders /></AuthPages>} />
           </Routes>
           <ShoppingCart/>
           <Foot />

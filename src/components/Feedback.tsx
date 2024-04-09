@@ -3,7 +3,7 @@ import { db } from "../libs/firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { Button } from "flowbite-react";
 import { ReviewData } from "../hooks/GetReviews";
-import { Reviews } from "../components/Reviews";
+import { Reviews } from "./Reviews";
 
 const Feedback = () => {
     const [review, setReview] = useState<ReviewData>({

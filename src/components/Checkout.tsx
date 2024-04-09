@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button } from "flowbite-react";
 import {
   collection,
@@ -12,7 +12,7 @@ import { AuthContext } from "../context/AuthContext";
 import { useShoppingCart } from "../context/CartContext";
 import { useLocation } from "react-router-dom";
 
-interface order {
+export interface Order {
   fullName: string;
   address: string;
   city: string;
@@ -37,7 +37,7 @@ const Checkout = () => {
   const [checkoutDone, SetCheckoutDone] = useState(false);
   const [orderId, setOrderId] = useState(""); // State to store the order ID
   //const [orderId, setOrderId] = useState<string | null>(null); // State to store the order ID
-  const [order, setOrder] = useState<order>({
+  const [order, setOrder] = useState<Order>({
     fullName: currentUser ? currentUser.displayName || "" : "",
     address: "",
     city: "",

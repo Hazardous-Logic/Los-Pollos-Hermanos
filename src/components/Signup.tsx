@@ -1,66 +1,56 @@
-import React, { useState, useContext } from "react";
-import GoogleLogin from "../components/GoogleLogin";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import GoogleLogin from "./GoogleLogin";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+
+import { auth, db } from "../libs/firebase";
 import { FirebaseError } from "firebase/app";
 
-import { auth } from "../libs/firebase";
-import { signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { AuthContext } from "../context/AuthContext";
-
-const Login = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [showPass, setShowPass] = useState(false);
-
-  const navigate = useNavigate();
-
-  const [errHandler, setErrHandler] = useState({
-    isError: false,
-    errorMsg: "",
-  });
-
-  const [emailNotVerified, setEmailNotVerified] = useState(false);
-
-  const { currentUser } = useContext(AuthContext);
-  if (currentUser) {
-    return <Navigate to="/" />;
-  }
-
+const Signup = () => {
   const FIREBASE_ERRORS = {
     "auth/email-already-in-use": "A user with that email already exists",
     "auth/weak-password":
       "Please check your password. It should be 6+ characters",
-    "auth/user-not-found": "Invalid email or password",
-    "auth/wrong-password": "Invalid email or password",
   };
+  const [isLoading, setIsLoading] = useState(false);
+  const [showPass, setShowPass] = useState(false);
 
-  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+  const navigate = useNavigate();
+  
+  const [errHandler, setErrHandler] = useState({
+    isError: false,
+    errorMsg: "",
+  });
+  const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const form = e.target as HTMLFormElement;
     const formValues = new FormData(form);
-
+    
+    //Create a new user
     try {
-      // this is a trick to resolve the issue to resolve the authStateChanged when user verifies their email and login then it doesnot changes as it is same as signup
-      await signOut(auth);
       setIsLoading(true);
-      setEmailNotVerified(false);
       setErrHandler({ isError: false, errorMsg: "" });
-      const userCredential = await signInWithEmailAndPassword(
+      const userCredential = await createUserWithEmailAndPassword(
         auth,
         formValues.get("email") as string,
         formValues.get("password") as string
       );
-      if (userCredential.user) {
-        if (!userCredential.user.emailVerified) {
-          setEmailNotVerified(true);
-          setErrHandler({
-            isError: true,
-            errorMsg: "Please verify your mail before logging in.",
-          });
-        } else {
-          navigate("/");
-        }
-      }
+      
+      //Update the name , this was a bug with new firebase
+      await updateProfile(userCredential.user, { displayName: formValues.get("name") as string});
+
+      //save the user in the firestore
+      await setDoc(doc(db, "users", userCredential.user.uid), {
+        name: formValues.get("name") as string,
+        email: formValues.get("email") as string,
+        timeStamp: serverTimestamp(),
+        role: "user",
+        orders:[],
+      });
+
+      navigate("/verify");
     } catch (error: unknown) {
       const err = error as FirebaseError;
 
@@ -74,27 +64,40 @@ const Login = () => {
   };
 
   return (
-    <div className="container mx-auto my-10 rounded py-5 bg-yellow-300 w-full md:w-2/3 lg:w-1/2">
-      <h2 className="text-4xl font-medium mt-10 text-black text-center">Log in</h2>
+  
+
+    <div className="container mx-auto my-10 rounded-xl py-5 bg-yellow-300 w-full md:w-2/3 lg:w-1/2">
+            <h2 className="text-4xl font-medium mt-10 text-black text-center">Sign up</h2>
       <div className="auth-options w-full flex flex-col items-center justify-center">
         <GoogleLogin
-          isLoading={isLoading}
+          isLoading={false}
           setIsLoading={setIsLoading}
-          message="Sign in with Google"
+          message="Sign up with Google"
         />
         <div className="mt-5 mb-3 w-full md:w-[380px] flex items-center justify-center">
           <div className="before-or w-[100%] h-[2px] bg-gray-700 mr-2"></div>
           <p className="text-black or">OR</p>
           <div className="after-or w-[100%] h-[2px] bg-gray-700 ml-2"></div>
         </div>
-        <form onSubmit={handleLogin} className="w-[100%] mx-auto md:w-auto">
+        <form onSubmit={handleSignup} className="w-[100%] mx-auto md:w-auto">
+          <label htmlFor="name" className="mt-5 block text-gray-600">
+            Name
+          </label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            required
+            className="border-slate-400 px-3 w-full md:w-[400px] py-2 rounded-md border-2 "
+          />
           <label htmlFor="email" className="mt-5 block text-gray-600">
             Email
           </label>
           <input
-            type="text"
+            type="email"
             name="email"
             id="email"
+            required
             className="border-slate-400 px-3 w-full md:w-[400px] py-2 rounded-md border-2 "
           />
           <label htmlFor="password" className="mt-5 block text-gray-600">
@@ -152,42 +155,33 @@ const Login = () => {
                 </svg>
               )}
             </button>
-
-            <div className="mt-2 flex justify-end">
-              <Link to="/forgot-password">Forgot Password?</Link>
-            </div>
           </div>
+
           {errHandler.isError ? (
             <div className="w-[100%] mx-auto md:w-auto bg-red-600 mt-3 rounded-md px-3 py-2 text-white">
               {errHandler.errorMsg}
-
-              {emailNotVerified ? (
-                <div className="  w-full flex items-center  mt-5 mb-2 justify-center">
-                  <Link className="border-2 px-3 py-1 rounded-md" to="/verify">
-                    Verify Email
-                  </Link>
-                </div>
-              ) : null}
             </div>
           ) : null}
           <div className="flex justify-end">
             <button
               type="submit"
-              className="bg-slate-800 mt-5 w-full px-10 py-2  border-2 border-solid border-mainbg rounded-md text-white hover:scale-95 duration-100 ease-in "
+              disabled={isLoading}
+              className="bg-slate-800 mt-5 w-full px-10 py-2  border-2 border-solid border-mainbg rounded-md text-white hover:scale-95 duration-100 ease-in disabled:bg-gray-700 "
             >
-              Log in
+              {isLoading ? "Signing up..." : "Sign up"}
             </button>
           </div>
         </form>
         <p className="mt-5 text-left">
-          Don't have an account?
-          <Link to="/signup" className="font-medium">
-            Sign up
+          Already have an account?{" "}
+          <Link to="/login" className="font-medium">
+            Log in
           </Link>
         </p>
       </div>
+    
     </div>
   );
 };
 
-export default Login;
+export default Signup;
