@@ -11,20 +11,22 @@ import { db } from "../libs/firebase";
 import { AuthContext } from "../context/AuthContext";
 import { useShoppingCart } from "../context/CartContext";
 import { useLocation } from "react-router-dom";
+import { Item } from "./CartItem";
 
 export interface Order {
+  uId : string;
   fullName: string;
   address: string;
   city: string;
   postalCode: string;
   phoneNumber: string;
-  items: [];
+  items: Item[];
 }
 
-export interface CheckoutProps{
-  total: number;
-  time: number;
-}
+// export interface CheckoutProps{
+//   total: number;
+//   time: number;
+// }
 
 const Checkout = () => {
   const { currentUser } = useContext(AuthContext);
@@ -38,6 +40,7 @@ const Checkout = () => {
   const [orderId, setOrderId] = useState(""); // State to store the order ID
   //const [orderId, setOrderId] = useState<string | null>(null); // State to store the order ID
   const [order, setOrder] = useState<Order>({
+    uId : currentUser ? currentUser.uid || "" : "",
     fullName: currentUser ? currentUser.displayName || "" : "",
     address: "",
     city: "",
@@ -67,6 +70,7 @@ const Checkout = () => {
       }
 
       setOrder({
+        uId: "",
         fullName: "",
         address: "",
         city: "",
@@ -76,7 +80,6 @@ const Checkout = () => {
       });
 
       clearCart();
-      //  navigate("/confirmation");
       SetCheckoutDone(true);
     } catch (error) {
       console.error("Error placing order: ", error);

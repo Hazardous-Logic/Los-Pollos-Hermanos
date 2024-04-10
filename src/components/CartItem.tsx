@@ -2,14 +2,14 @@ import { useShoppingCart } from "../context/CartContext";
 import { GetMenuData } from "../hooks/GetMenuData";
 
 
-type CartItemProps = {
+export interface Item {
   id: string;
   input: number;
 };
 
 
 
-export function CartItem({ id, input }: CartItemProps) {
+export function CartItem({ id, input }: Item) {
   const { removeItemFromCart } = useShoppingCart();
   const menu = GetMenuData();
   const item = menu.find((item) => item.name === id);

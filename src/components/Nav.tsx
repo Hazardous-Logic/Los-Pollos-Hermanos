@@ -1,4 +1,4 @@
-import { Avatar, Dropdown, Navbar, Button } from 'flowbite-react';
+import { Dropdown, Navbar, Button } from 'flowbite-react';
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { Link, NavLink , useNavigate} from 'react-router-dom';
@@ -44,12 +44,10 @@ function Nav() {
               arrowIcon={true}
               inline
               label={
-                <Avatar img={currentUser?.photoURL || ''}rounded color="pink" size="lg">
                   <div className="space-y-1 font-medium dark:text-white">
                     <div className='text-red-500'>Hola! {userName}</div>
                     <div className="text-sm text-red-500 dark:text-gray-400">{userEmail}</div>
                   </div>
-                </Avatar>
               }
             >
               <Dropdown.Header className='text-red-500'>

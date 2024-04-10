@@ -21,6 +21,7 @@ import Checkout from './components/Checkout';
 import Confirmation from './components/Confirmation';
 import Orders from './components/Orders';
 
+
 function App() {
   return (
     <Suspense fallback={<Loading />}>
@@ -49,6 +50,7 @@ function App() {
         </CartProvider>
       </AuthContextProvider>
     </Suspense>
+
   );
 }
 

@@ -1,36 +1,56 @@
 import { db } from "../libs/firebase";
 import { AuthContext } from "../context/AuthContext";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Order } from "./Checkout";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 
 const Orders = () =>{
     const { currentUser } = useContext(AuthContext);
-
-    const [pastOrders, setPastOrders] = useState<Order[]>([]);
+    const [orders, setOrders] = useState<Order[]>([]);
 
     useEffect(() => {
-        // Fetch past orders from Firestore
-        const fetchPastOrders = async () => {
-          try {
-            const ordersSnapshot = await db.collection('users').doc(userCredential.user.uid).get();
-            const userData = ordersSnapshot.data();
-            if (userData && userData.orders) {
-              setPastOrders(userData.orders);
-            }
-          } catch (error) {
-            console.error('Error fetching past orders:', error);
-          }
-        };
-    
-        fetchPastOrders();
-      }, []);
+      const getOrders = async () => {
+        if (currentUser) {
+          //had to change the structure of linking the user to the order for this to work
+          //this actually is a more efficient way
+          const ordersRef = await getDocs(query(collection(db, "orders"), where("uId", "==", currentUser.uid)));
+          const ordersData = ordersRef.docs.map(
+            (doc) => doc.data() as Order
+          );
+          setOrders(ordersData);        
+        }
+      };
+      getOrders();
+      // console.log(orders);
+    }, [currentUser]);
+  
 
 
-    return(
-        <div>
-          <h1>hello </h1>
-        </div>
+    return (
+ <div className="container mx-auto my-10 rounded-xl py-5 md:w-2/3 lg:w-1/2 flex flex-col items-center bg-yellow-300">
+        <h2 className="text-4xl font-medium mt-10 text-black text-center mb-5">Order History</h2>
+        <ul className="list-none w-1/2 p-0">
+          {orders.map((order, index) => (
+            <li key={index} className="mb-6 p-7 shadow-xl bg-gray-200 text-gray-700 border border-gray-200 flex flex-col items-center rounded-xl">
+              <h3 className="text-xl font-semibold">Order {index + 1}</h3>
+              <p><strong>Full Name:</strong> {order.fullName}</p>
+              <p><strong>Address:</strong> {order.address}</p>
+              <p><strong>City:</strong> {order.city}</p>
+              <p><strong>Postal Code:</strong> {order.postalCode}</p>
+              <p><strong>Phone Number:</strong> {order.phoneNumber}</p>
+              <h4 className="text-xl font-semibold">Items:</h4>
+              <ul className="list-none">
+                {order.items.map((item, i) => (
+                  <li key={i}>
+                    Item: {item.id}, Quantity: {item.input}
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ul>
+      </div>
     );
 }
 
