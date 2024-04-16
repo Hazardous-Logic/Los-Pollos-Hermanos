@@ -58,8 +58,10 @@ export function ShoppingCart() {
              <Button color="failure" pill onClick={() =>clearCart()}>Clear Cart</Button>
         </div>
        <Button className="mx-auto" pill color="success" onClick={handleCheckout} disabled={cartItems.length < 1}>Checkout</Button>
-        </div>
+        </div>{(total>0) && (<div className=" shadow-xl p-3 bg-red-700 text-white flex flex-col items-center rounded-full">
         <p className="text-xl">{time + " minutes estimated delivery time"}</p>
+        </div>)}
+
       </div>
     </div>
     <div className="fixed bottom-8 right-8 z-10">
@@ -69,7 +71,6 @@ export function ShoppingCart() {
         </svg>
       </button>
     </div>
-
           </>
   );
 }

@@ -1,17 +1,12 @@
 import React, { useContext, useState } from "react";
 import { Button } from "flowbite-react";
-import {
-  collection,
-  doc,
-  updateDoc,
-  arrayUnion,
-  addDoc,
-} from "firebase/firestore";
+import {collection, doc, updateDoc, arrayUnion, addDoc } from "firebase/firestore";
 import { db } from "../libs/firebase";
 import { AuthContext } from "../context/AuthContext";
 import { useShoppingCart } from "../context/CartContext";
 import { useLocation } from "react-router-dom";
 import { Item } from "./CartItem";
+import { Timer } from "./Timer";
 
 export interface Order {
   uId : string;
@@ -90,12 +85,15 @@ const Checkout = () => {
   return (
     <>
       {checkoutDone ? (
-        <div className="container mx-auto my-10 rounded-xl text-center items-center flex flex-col py-5 bg-yellow-300 w-full md:w-2/3 lg:w-1/2">
+        <>
+        <div className="container mx-auto my-10 rounded-xl shadow-xl text-center items-center flex flex-col py-5 bg-yellow-300 w-full md:w-2/3 lg:w-1/2">
           <p className="font-semibold text-xl mb-5">Your meal is on its way! 🙂</p>
           <p className="font-semibold">Order confirmation number:</p>
           <p className="font-bold text-2xl">{orderId}</p>
-          <p className="font-semibold">{time + " " + total}! 🙂</p>
+          <p className="font-semibold">{"Total Paid: " + total+ "ft"}! 🙂</p>
         </div>
+        <Timer deliveryTime={time} />
+        </>
       ) : (
         <div className="container mx-auto text-center my-10 rounded-xl py-5 bg-yellow-300 w-full md:w-2/3 lg:w-1/2">
           <h2 className="text-4xl font-medium mt-10 text-black text-center">

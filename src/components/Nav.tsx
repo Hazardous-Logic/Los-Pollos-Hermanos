@@ -12,7 +12,6 @@ function Nav() {
   const [isAdmin, setIsAdmin] = UseCheckAdmin();
   const { cartItems , clearCart } = useShoppingCart();
   const navigate = useNavigate();
-
   const handleLogout = async () => {
 
     if (cartItems.length > 0) {

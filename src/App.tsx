@@ -5,7 +5,7 @@ import Shop from './components/Shop';
 import Foot from './components/Foot';
 import Story from './components/Story';
 import Profile from './components/Profile';
-import { Suspense } from 'react';
+import { Suspense, useState } from 'react';
 import Loading from './components/Loading';
 import { AuthContextProvider } from './context/AuthContext';
 import AuthPages from './components/AuthPages';
@@ -18,11 +18,14 @@ import Feedback from './components/Feedback';
 import Admin from './components/Admin';
 import { ShoppingCart } from './components/ShoppingCart';
 import Checkout from './components/Checkout';
-import Confirmation from './components/Confirmation';
 import Orders from './components/Orders';
+import { Timer } from './components/Timer';
 
 
 function App() {
+
+  const [deliveryActive, setDeliveryActive] = useState();
+
   return (
     <Suspense fallback={<Loading />}>
       <AuthContextProvider>
@@ -41,8 +44,8 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/contact" element={<AuthPages><Feedback /></AuthPages>} />
             <Route path="/checkout" element={<AuthPages><Checkout /></AuthPages>} />
-            <Route path="/confirmation" element={<AuthPages><Confirmation /></AuthPages>} />
             <Route path="/orders" element={<AuthPages><Orders /></AuthPages>} />
+            <Route path="/timer" element={<AuthPages><Timer deliveryTime={5} /></AuthPages>} />
           </Routes>
           <ShoppingCart/>
           <Foot />
