@@ -39,8 +39,8 @@ const Feedback = () => {
 
     return (
         <>
-        <div className="container mx-auto my-10 rounded-xl py-5 bg-yellow-300 w-full md:w-2/3 lg:w-1/2">
-            <h2 className="text-4xl font-medium mt-10 text-black text-center">Add Feedback</h2>
+        <div className="container mx-auto my-10 rounded-xl py-5 text-center bg-yellow-300 w-full md:w-2/3 lg:w-1/2">
+            <h2 className="text-4xl font-medium my-5 text-black text-center tracking-wider">Add Feedback</h2>
             <form onSubmit={handleSubmit}>
                 <div className="flex flex-wrap mx-3 mb-6">
                     <div className="w-full px-3">
@@ -65,11 +65,11 @@ const Feedback = () => {
                         </label>
                         <select className="shadow-xl appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="rating" name="rating" value={review.rating} onChange={handleChange}>
                             <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
+                            <option value="1">1 ⭐</option>
+                            <option value="2">2 ⭐⭐</option>
+                            <option value="3">3 ⭐⭐⭐</option>
+                            <option value="4">4 ⭐⭐⭐⭐</option>
+                            <option value="5">5 ⭐⭐⭐⭐⭐</option>
                         </select>
                     </div>
                 </div>

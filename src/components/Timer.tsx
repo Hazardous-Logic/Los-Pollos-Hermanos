@@ -50,8 +50,8 @@ export function Timer({ deliveryTime }: { deliveryTime: number }) {
 
 {timeUp ? (
     <div  className="container mx-auto my-10 rounded-xl shadow-xl text-center items-center flex flex-col py-5 bg-yellow-300 w-full md:w-2/3 lg:w-1/2">
-        <p className="font-semibold text-xl mb-5">Your meal has arrived! 🙂</p>
-    </div>
+                    <p className="font-semibold text-xl mb-5">Your meal has arrived! 🥳</p>
+                    <p className="text-gray-700">Delivery Time: {new Date().toLocaleString()}</p>    </div>
 ):(
     <svg 
     width={size} 
