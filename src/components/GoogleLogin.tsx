@@ -1,8 +1,4 @@
-import {
-  GoogleAuthProvider,
-  getRedirectResult,
-  signInWithRedirect,
-} from "firebase/auth";
+import {GoogleAuthProvider,getRedirectResult, signInWithRedirect} from "firebase/auth";
 import { useState, useEffect } from "react";
 import { auth, db } from "../libs/firebase";
 import { useNavigate } from "react-router-dom";
@@ -99,7 +95,7 @@ const GoogleLogin = ({ message, isLoading, setIsLoading }: Props) => {
       <button
         onClick={handleLogin}
         type="button"
-        className=" hover:scale-95 duration-100 ease-in bg-white flex mt-10 w-[100%] md:w-[400px] border-2 border-solid shadow-sm border-slate-400 py-2 px-10 md:px-16 rounded-md items-center justify-center disabled:bg-gray-50 "
+        className=" hover:scale-95 duration-100 ease-in bg-white flex mt-10 w-[100%] md:w-[400px] shadow-xl py-2 px-10 md:px-16 rounded-full items-center justify-center disabled:bg-gray-50 "
         disabled={isLoading}
       >
         {signInLoading ? (

@@ -5,13 +5,7 @@ import { Button } from "flowbite-react";
 import { MenuItemData } from "../hooks/GetMenuData";
 
 const AddMenuItem = () => {
-  const [newMenuItem, setNewMenuItem] = useState<MenuItemData>({
-     name: "", 
-     imgLink: "", 
-     description: "", 
-     price: 0, 
-     prepTime: 0
-    });
+  const [newMenuItem, setNewMenuItem] = useState<MenuItemData>({name: "", imgLink: "", description: "", price: 0, prepTime: 0});
 
   //to make sure that the fields are converted to number type correctly
   const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {

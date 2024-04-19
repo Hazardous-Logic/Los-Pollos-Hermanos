@@ -3,7 +3,8 @@ import { auth, db } from "../libs/firebase";
 import { AuthContext } from "../context/AuthContext";
 import { useContext } from "react";
 import { Button } from "flowbite-react";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { deleteDoc, doc, getDoc, updateDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 interface UserProfile {
   fullName: string;
@@ -11,6 +12,8 @@ interface UserProfile {
 }
 
 const Profile = () => {
+
+  const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
   const [updates, setUpdates] = useState<UserProfile>({
     fullName: "",
@@ -74,6 +77,32 @@ const Profile = () => {
     }
   };
 
+  const deleteUserAccount = async () => {
+    const confirmation = window.confirm("Are you sure you want to delete your account? This action cannot be undone.");
+    if (confirmation) {
+      try {
+        if (currentUser) {
+          // Delete user data from Firestore
+          await deleteDoc(doc(db, "users", currentUser.uid));
+          
+          // Delete user account from Firebase Authentication
+          await currentUser.delete();
+  
+          alert("Your account has been deleted successfully!");
+  
+        } else {
+          alert("User not logged in.");
+        }
+      } catch (error) {
+        console.error("Error deleting user account:", error);
+        alert("An error occurred while deleting your account. Please try again later.");
+      } finally {
+        navigate("/login");
+      }
+    }
+  };
+  
+
   return (
     <div className="container mx-auto my-10 text-center rounded-xl py-5 bg-yellow-300 w-full md:w-2/3 lg:w-1/2">
       <h2 className="text-4xl font-medium my-5 text-black text-center tracking-wider">
@@ -117,6 +146,7 @@ const Profile = () => {
             />
           </div>
         </div>
+        <p className="tracking-wide font-bold text-gray-700 my-5">User ID: {currentUser?.uid}</p>
         <p className="tracking-wide font-semibold text-gray-700 my-5">Account created: {createdAt}</p>
         <p className="tracking-wide font-semibold text-gray-700 my-5=">Last login: {lastLoginAt}</p>
 
@@ -134,7 +164,7 @@ const Profile = () => {
           className="mx-auto mt-5"
           pill
           color="failure"
-          // onClick={deleteUserAccount}
+          onClick={deleteUserAccount}
         >
           Delete Account
         </Button>

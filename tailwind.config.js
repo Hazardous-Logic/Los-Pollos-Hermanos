@@ -7,7 +7,10 @@ export default {
   ],
   theme: {
     extend: {
-      
+      animation: {
+        // Bounces 3 and lands perfectly
+        'bounce-short': 'bounce 1s ease-in-out 3.5'
+      }
     },
   },
   plugins: [

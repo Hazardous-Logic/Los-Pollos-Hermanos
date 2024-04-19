@@ -63,10 +63,14 @@ const Login = () => {
       }
     } catch (error: unknown) {
       const err = error as FirebaseError;
-
+      console.log("Firebase Error Code:", err.code); // Debug log
+      console.log("Firebase Error Message:", err.message); // Debug log
+      console.log("Error Object:", err); // Debug log
+      console.log("FIREBASE_ERRORS:", FIREBASE_ERRORS); // Debug log
+      console.log("Error Message:", FIREBASE_ERRORS[err.code as keyof typeof FIREBASE_ERRORS]); // Debug log
       setErrHandler({
         isError: true,
-        errorMsg: FIREBASE_ERRORS[err.code as keyof typeof FIREBASE_ERRORS],
+        errorMsg: FIREBASE_ERRORS[err.code as keyof typeof FIREBASE_ERRORS] || "Login error. Please check your credentials",
       });
     } finally {
       setIsLoading(false);
@@ -74,8 +78,8 @@ const Login = () => {
   };
 
   return (
-    <div className="container mx-auto my-10 rounded py-5 bg-yellow-300 w-full md:w-2/3 lg:w-1/2">
-      <h2 className="text-4xl font-medium mt-10 text-black text-center">Log in</h2>
+    <div className="container mx-auto my-10 rounded-xl py-5 text-center bg-yellow-300 w-full md:w-2/3 lg:w-1/2">
+      <h2 className="text-4xl font-medium my-5 text-black text-center tracking-wider">Log in</h2>
       <div className="auth-options w-full flex flex-col items-center justify-center">
         <GoogleLogin
           isLoading={isLoading}
@@ -83,16 +87,16 @@ const Login = () => {
           message="Sign in with Google"
         />
         <div className="mt-5 mb-3 w-full md:w-[380px] flex items-center justify-center">
-          <div className="before-or w-[100%] h-[2px] bg-gray-700 mr-2"></div>
+          <div className="before-or w-[100%] h-[2px] bg-gray-900 mr-2"></div>
           <p className="text-black or">OR</p>
-          <div className="after-or w-[100%] h-[2px] bg-gray-700 ml-2"></div>
+          <div className="after-or w-[100%] h-[2px] bg-gray-900 ml-2"></div>
         </div>
         <form onSubmit={handleLogin} className="w-[100%] mx-auto md:w-auto">
           <label htmlFor="email" className="mt-5 block text-gray-600">
             Email
           </label>
           <input
-            type="text"
+            type="email"
             name="email"
             id="email"
             className="border-slate-400 px-3 w-full md:w-[400px] py-2 rounded-md border-2 "
@@ -173,7 +177,7 @@ const Login = () => {
           <div className="flex justify-end">
             <button
               type="submit"
-              className="bg-slate-800 mt-5 w-full px-10 py-2  border-2 border-solid border-mainbg rounded-md text-white hover:scale-95 duration-100 ease-in "
+              className="bg-red-700 mt-5 w-full px-10 py-2  rounded-full text-white hover:scale-95 duration-100 ease-in "
             >
               Log in
             </button>

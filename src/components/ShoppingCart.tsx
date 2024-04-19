@@ -65,9 +65,9 @@ export function ShoppingCart() {
       </div>
     </div>
     <div className="fixed bottom-8 right-8 z-10">
-      <button onClick={() => setIsOpen(!isOpen)} className={`bg-red-700 text-white p-2 rounded-full shadow-lg  transition-transform transform ${isOpen ? "-translate-x-96 rotate-0": "translate-x-0 rotate-180 "}`}>
+      <button onClick={() => setIsOpen(!isOpen)} className={`bg-red-700 animate-bounce-short text-white p-2 rounded-full shadow-lg  transition-transform transform ${isOpen ? "-translate-x-96 rotate-180": "translate-x-0 rotate-0 "}`}>
         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.5 5l -7 7 7 7" />
         </svg>
       </button>
     </div>
