@@ -10,7 +10,7 @@ const Feedback = () => {
         name: "",
         email: "",
         comments: "",
-        rating: 0 // Rating stored as a number
+        rating: 0 
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement> | React.ChangeEvent<HTMLSelectElement>) => {

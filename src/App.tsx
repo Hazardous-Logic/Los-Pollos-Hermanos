@@ -24,7 +24,7 @@ import { Timer } from './components/Timer';
 
 function App() {
 
-  const [deliveryActive, setDeliveryActive] = useState();
+  // const [deliveryActive, setDeliveryActive] = useState();
 
   return (
     <Suspense fallback={<Loading />}>
@@ -45,7 +45,6 @@ function App() {
             <Route path="/contact" element={<AuthPages><Feedback /></AuthPages>} />
             <Route path="/checkout" element={<AuthPages><Checkout /></AuthPages>} />
             <Route path="/orders" element={<AuthPages><Orders /></AuthPages>} />
-            <Route path="/timer" element={<AuthPages><Timer deliveryTime={5} /></AuthPages>} />
           </Routes>
           <ShoppingCart/>
           <Foot />

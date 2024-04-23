@@ -30,7 +30,7 @@ const Login = () => {
     "auth/weak-password":
       "Please check your password. It should be 6+ characters",
     "auth/user-not-found": "Invalid email or password",
-    "auth/wrong-password": "Invalid email or password",
+    "auth/invalid-credential": "Invalid email or password",
   };
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -63,10 +63,10 @@ const Login = () => {
       }
     } catch (error: unknown) {
       const err = error as FirebaseError;
-      console.log("Firebase Error Code:", err.code); // Debug log
-      console.log("Firebase Error Message:", err.message); // Debug log
-      console.log("Error Object:", err); // Debug log
-      console.log("FIREBASE_ERRORS:", FIREBASE_ERRORS); // Debug log
+      // console.log("Firebase Error Code:", err.code); // Debug log
+      // console.log("Firebase Error Message:", err.message); // Debug log
+      // console.log("Error Object:", err); // Debug log
+      // console.log("FIREBASE_ERRORS:", FIREBASE_ERRORS); // Debug log
       console.log("Error Message:", FIREBASE_ERRORS[err.code as keyof typeof FIREBASE_ERRORS]); // Debug log
       setErrHandler({
         isError: true,

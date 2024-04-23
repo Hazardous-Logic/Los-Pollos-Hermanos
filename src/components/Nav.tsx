@@ -31,7 +31,7 @@ function Nav() {
   const userEmail = currentUser?.email || 'default@email.com';
 
   return (
-    <div className='container mx-auto mt-5'>
+    <div className='container mx-auto mt-5 tracking-wide'>
       <Navbar fluid className='bg-yellow-300 shadow-xl rounded-xl'>
         <Navbar.Brand as={Link} to="/">
           <img src="/Los_Pollos.webp" className="mr-7 h-20 sm:h-36" alt="Logo" />

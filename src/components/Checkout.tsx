@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button } from "flowbite-react";
 import {collection, doc, updateDoc, arrayUnion, addDoc } from "firebase/firestore";
 import { db } from "../libs/firebase";
@@ -30,6 +30,8 @@ const Checkout = () => {
   //passing props didnt work, this is a workaround
   const location = useLocation();
   const { total, time } = location.state;
+
+
 
   const [checkoutDone, SetCheckoutDone] = useState(false);
   const [orderId, setOrderId] = useState(""); // State to store the order ID
@@ -81,6 +83,8 @@ const Checkout = () => {
       alert("Error placing order: " + error);
     }
   };
+
+  
 
   return (
     <>

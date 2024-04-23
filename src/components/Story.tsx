@@ -1,12 +1,12 @@
 function Story() {
   return (
-    <div className="container mx-auto my-10 rounded-xl w-full md:w-2/3 lg:w-3/4">
+    <div className="container mx-auto my-10 rounded-xl tracking-widest w-full md:w-2/3 lg:w-3/4">
       <div className="flex flex-col md:flex-row mb-10 rounded-xl shadow-xl bg-yellow-300">
         <div className="md:w-1/2">
           {/* Picture on the left, text on the right */}
           <img src="bell.jpg" alt="Description" className="rounded-xl" />
         </div>
-        <div className="md:w-1/2 p-10 font-serif flex font-semibold items-center justify-center text-xl">
+        <div className="md:w-1/2 p-10 font-serif  flex font-semibold items-center justify-center text-xl">
           {/* Text on the left */}
           <p>In the little village where I was born, life moved 
             at a slower pace, yet felt all the richer for it.</p>
