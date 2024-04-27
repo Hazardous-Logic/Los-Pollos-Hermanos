@@ -4,7 +4,6 @@
 
 body {
     @apply bg-red-700; /* Apply your custom class */
-    /* font-family: "Raleway"; */
     background-color: white;
     background: url("Body.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;

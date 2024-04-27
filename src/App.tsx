@@ -22,6 +22,9 @@ import Orders from './components/Orders';
 import { Timer } from './components/Timer';
 
 
+
+
+
 function App() {
 
   // const [deliveryActive, setDeliveryActive] = useState();
@@ -29,6 +32,7 @@ function App() {
   return (
     <Suspense fallback={<Loading />}>
       <AuthContextProvider>
+      <TimerProvider>
         <CartProvider>
         <Router>
         <Nav />
@@ -50,6 +54,7 @@ function App() {
           <Foot />
         </Router>
         </CartProvider>
+        </TimerProvider>
       </AuthContextProvider>
     </Suspense>
 
