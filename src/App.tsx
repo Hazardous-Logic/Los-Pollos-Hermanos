@@ -32,7 +32,7 @@ function App() {
   return (
     <Suspense fallback={<Loading />}>
       <AuthContextProvider>
-      <TimerProvider>
+      {/* <TimerProvider> */}
         <CartProvider>
         <Router>
         <Nav />
@@ -54,7 +54,7 @@ function App() {
           <Foot />
         </Router>
         </CartProvider>
-        </TimerProvider>
+        {/* </TimerProvider> */}
       </AuthContextProvider>
     </Suspense>
 

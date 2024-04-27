@@ -1,4 +1,4 @@
-import {GoogleAuthProvider,getRedirectResult, signInWithPopup, signInWithRedirect} from "firebase/auth";
+import {GoogleAuthProvider,getRedirectResult, signInWithRedirect} from "firebase/auth";
 import { useState, useEffect } from "react";
 import { auth, db } from "../libs/firebase";
 import { useNavigate } from "react-router-dom";
@@ -27,7 +27,7 @@ const GoogleLogin = ({ message, isLoading, setIsLoading }: Props) => {
       setIsLoading(true);
       setSignInLoading(true);
       setErrHandler({ isError: false, errorMsg: "" });
-      await signInWithPopup(auth, provider);
+      await signInWithRedirect(auth, provider);
     } catch (error) {
       setIsLoading(false);
       setSignInLoading(false);
