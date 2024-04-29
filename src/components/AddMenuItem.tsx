@@ -67,7 +67,7 @@ const AddMenuItem = () => {
             <textarea className="shadow-xl appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="description" name="description" rows={3} value={newMenuItem.description} onChange={handleChange}></textarea>
           </div>
         </div>
-        <Button className="mx-auto" pill color="failure" type="submit">
+        <Button data-testid="submit-button" className="mx-auto" pill color="failure" type="submit">
           Add Menu Item
         </Button>
       </form>

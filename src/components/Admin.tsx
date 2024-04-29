@@ -11,12 +11,12 @@ const Admin = () => {
   return (
     <>
       {isAdmin ? (
-        <>
+        <div data-testid="admin">
           <AddMenuItem />
           <DeleteMenuItem />
-        </>
+        </div>
       ) : (
-        <div className="container mx-auto my-10 rounded-xl text-center items-center flex flex-col py-5 bg-yellow-300 w-full md:w-2/3 lg:w-1/2">
+        <div data-testid="non-admin" className="container mx-auto my-10 rounded-xl text-center items-center flex flex-col py-5 bg-yellow-300 w-full md:w-2/3 lg:w-1/2">
           <p className="font-semibold">You lack the privileges to access this page. 🙂</p>
           <Button
             className="mt-3 mb-3"

@@ -11,7 +11,8 @@ export function UseCheckAdmin(): [boolean, React.Dispatch<React.SetStateAction<b
 
   useEffect(() => {
     const checkAdmin = async () => {
-      if (currentUser) {
+      //uid check added during testing of mock user
+      if (currentUser && currentUser.uid) {
         const userRef = doc(db, "users", currentUser.uid);
         const userData = await getDoc(userRef);
         const user = userData.data();

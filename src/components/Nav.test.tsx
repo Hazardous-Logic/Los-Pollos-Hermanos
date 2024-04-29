@@ -1,5 +1,5 @@
 // Nav.test.tsx
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect} from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
@@ -35,25 +35,28 @@ describe('Nav Component', () => {
     screen.debug();
   });
 
-//   it('should display the user name when they are logged in', () => {
-//     const mockUser: User = {
-//       displayName: 'John Doe',
-//       email: 'johndoe@example.com',
-//       // Add required mocked fields or cast a partial as User if necessary
-//     } as User;
+  it('should display the user name when they are logged in', () => {
+    const mockUser: User = {
+      displayName: 'John Doe',
+      email: 'johndoe@example.com',
+    } as User;
 
-//     renderWithAuthContext(<Nav />, { currentUser: mockUser });
-//     expect(screen.getByText(/Hola! John Doe/i)).toBeInTheDocument();
-//   });
+    renderWithAuthContext(<Nav />, { currentUser: mockUser });
+    expect(screen.getByText(/Hola! John Doe/i)).toBeInTheDocument();
+  });
+  
+  it('should show not the admin tab for a normal user', () => {
+    const mockUser: User = {
+        displayName: 'John Doe',
+        email: 'johndoe@example.com',
+      } as User;
 
-//   it('should show not the admin tab for a normal user', () => {
-//     const mockUser: User = {
-//       displayName: 'Admin User',
-//       email: 'admin@example.com',
-//       // Add required mocked fields or cast a partial as User if necessary
-//     } as User;
+    renderWithAuthContext(<Nav />, { currentUser: mockUser });
+    expect(screen.queryByText(/Admin/i)).not.toBeInTheDocument();
+  });
 
-//     renderWithAuthContext(<Nav />, { currentUser: mockUser });
-//     expect(screen.getByText(/Admin/i)).not.toBeInTheDocument();
-//   });
 });
+
+
+
+
