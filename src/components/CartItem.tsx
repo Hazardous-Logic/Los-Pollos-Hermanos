@@ -7,8 +7,6 @@ export interface Item {
   input: number;
 };
 
-
-
 export function CartItem({ id, input }: Item) {
   const { removeItemFromCart } = useShoppingCart();
   const menu = GetMenuData();

@@ -1,6 +1,6 @@
 function Story() {
   return (
-    <div className="container mx-auto my-10 rounded-xl tracking-widest w-full md:w-2/3 lg:w-3/4">
+    <div data-testid="story" className="container mx-auto my-10 rounded-xl tracking-widest w-full md:w-2/3 lg:w-3/4">
       <div className="flex flex-col md:flex-row mb-10 rounded-xl shadow-xl bg-yellow-300">
         <div className="md:w-1/2">
           {/* Picture on the left, text on the right */}

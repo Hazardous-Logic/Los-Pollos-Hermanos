@@ -1,6 +1,6 @@
 function Home() {
   return (
-    <div className="container rounded-xl py-4 mx-auto">
+    <div data-testid="home" className="container rounded-xl py-4 mx-auto">
       <img
         src="Home.jpg"
         alt="Home"

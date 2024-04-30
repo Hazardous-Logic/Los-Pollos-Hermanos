@@ -22,7 +22,7 @@ export function UseCheckAdmin(): [boolean, React.Dispatch<React.SetStateAction<b
           setIsAdmin(true);
         } else {
           setIsAdmin(false);
-        }
+       }
       }
     };
 

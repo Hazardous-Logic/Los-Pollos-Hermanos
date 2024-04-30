@@ -3,7 +3,7 @@ import { BsDribbble, BsFacebook, BsGithub, BsInstagram, BsTwitter } from 'react-
 
 function Foot() {
   return (
-    <div className='container mx-auto mb-5'>
+    <div data-testid="footer" className='container mx-auto mb-5'>
          <Footer container className='bg-yellow-300 rounded-xl shadow-xl'>
       <div className="w-full">
         <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">

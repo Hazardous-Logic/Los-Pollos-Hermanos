@@ -7,6 +7,7 @@ const Spinner = ({ w = "24", h = "24", customStyle }: Props) => {
   return (
     <>
       <svg
+        data-testid="spinner"
         xmlns="http://www.w3.org/2000/svg"
         width={w}
         height={h}
