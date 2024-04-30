@@ -23,7 +23,7 @@ const Profile = () => {
   const [lastLoginAt, setLastLoginAt] = useState<string>("");
 
   useEffect(() => {
-    console.log(currentUser);
+    //console.log(currentUser);
     const fetchUserData = async () => {
       try {
         if (currentUser) {
@@ -43,6 +43,8 @@ const Profile = () => {
             setCreatedAt(user.metadata.creationTime || "");
             setLastLoginAt(user.metadata.lastSignInTime || "");
           }
+        } else {
+          navigate("/login");
         }
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -104,7 +106,7 @@ const Profile = () => {
   
 
   return (
-    <div className="container mx-auto my-10 text-center rounded-xl py-5 bg-yellow-300 w-full md:w-2/3 lg:w-1/2">
+    <div data-testid="profile" className="container mx-auto my-10 text-center rounded-xl py-5 bg-yellow-300 w-full md:w-2/3 lg:w-1/2">
       <h2 className="text-4xl font-medium my-5 text-black text-center tracking-wider">
         Profile Settings
       </h2>
