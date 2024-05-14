@@ -39,7 +39,7 @@ export function ShoppingCart() {
     <div className={`fixed right-0 top-5 bottom-5 transition-transform transform ${isOpen ? "translate-x-0" : "translate-x-full"}`}>
       <div className="flex flex-col justify-between rounded-xl border-red-700 h-full border shadow-lg bg-yellow-300 w-96 p-4">
         <div className="flex justify-between items-center">
-          <h2 className="text-lg font-semibold">Cart</h2>
+          <h2 className="text-lg font-semibold">Shopping Cart</h2>
           <button onClick={()=>setIsOpen(false)} className="p-1 rounded hover:bg-red-700">
             <RxCross2 className="text-xl" />
           </button>
@@ -64,13 +64,13 @@ export function ShoppingCart() {
 
       </div>
     </div>
-    <div className="fixed bottom-8 right-8 z-10">
+    {(cartItems.length > 0) && (<div className="fixed bottom-16 right-16 z-10">
       <button onClick={() => setIsOpen(!isOpen)} className={`bg-red-700 animate-bounce-short text-white p-2 rounded-full shadow-lg  transition-transform transform ${isOpen ? "-translate-x-96 rotate-180": "translate-x-0 rotate-0 "}`}>
         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.5 5l -7 7 7 7" />
         </svg>
       </button>
-    </div>
+    </div>)}
           </>
   );
 }

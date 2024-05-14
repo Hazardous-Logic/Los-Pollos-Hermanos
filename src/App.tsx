@@ -5,9 +5,9 @@ import Shop from './components/Shop';
 import Foot from './components/Foot';
 import Story from './components/Story';
 import Profile from './components/Profile';
-import { Suspense, useState } from 'react';
+import { Suspense, useContext, useState } from 'react';
 import Loading from './components/Loading';
-import { AuthContextProvider } from './context/AuthContext';
+import { AuthContext, AuthContextProvider } from './context/AuthContext';
 import AuthPages from './components/AuthPages';
 import Login from './components/Login';
 import ForgotPassword from './components/ForgotPassword';
@@ -19,7 +19,6 @@ import Admin from './components/Admin';
 import { ShoppingCart } from './components/ShoppingCart';
 import Checkout from './components/Checkout';
 import Orders from './components/Orders';
-import { Timer } from './components/Timer';
 
 
 
@@ -28,7 +27,6 @@ import { Timer } from './components/Timer';
 function App() {
 
   // const [deliveryActive, setDeliveryActive] = useState();
-
   return (
     <Suspense fallback={<Loading />}>
       <AuthContextProvider>

@@ -177,14 +177,14 @@ const Login = () => {
           <div className="flex justify-end">
             <button
               type="submit"
-              className="bg-red-700 mt-5 w-full px-10 py-2  rounded-full text-white hover:scale-95 duration-100 ease-in "
+              className="bg-red-700 mt-5 w-full px-10 py-2 rounded-full text-white hover:scale-95 duration-100 ease-in "
             >
               Log in
             </button>
           </div>
         </form>
         <p className="mt-5 text-left">
-          Don't have an account?
+          Don't have an account?{" "}
           <Link to="/signup" className="font-medium">
             Sign up
           </Link>

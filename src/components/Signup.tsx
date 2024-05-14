@@ -9,9 +9,9 @@ import { FirebaseError } from "firebase/app";
 
 const Signup = () => {
   const FIREBASE_ERRORS = {
-    "auth/email-already-in-use": "A user with that email already exists",
+    "auth/email-already-in-use": "Account already exists",
     "auth/weak-password":
-      "Please check your password. It should be 6+ characters",
+      "Password should be at least 6 characters",
   };
   const [isLoading, setIsLoading] = useState(false);
   const [showPass, setShowPass] = useState(false);
@@ -67,7 +67,7 @@ const Signup = () => {
   
 
     <div className="container mx-auto my-10 rounded-xl py-5 bg-yellow-300 w-full md:w-2/3 lg:w-1/2">
-            <h2 className="text-4xl font-medium mt-10 text-black text-center">Sign up</h2>
+            <h2 className="text-4xl font-medium my-5 text-black text-center tracking-wider">Sign up</h2>
       <div className="auth-options w-full flex flex-col items-center justify-center">
         <GoogleLogin
           isLoading={false}
@@ -166,7 +166,7 @@ const Signup = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className="bg-slate-800 mt-5 w-full px-10 py-2  border-2 border-solid border-mainbg rounded-md text-white hover:scale-95 duration-100 ease-in disabled:bg-gray-700 "
+              className="bg-red-700 mt-5 w-full px-10 py-2  rounded-full text-white hover:scale-95 duration-100 ease-in "
             >
               {isLoading ? "Signing up..." : "Sign up"}
             </button>

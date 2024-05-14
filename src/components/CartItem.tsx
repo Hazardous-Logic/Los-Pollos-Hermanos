@@ -13,12 +13,12 @@ export function CartItem({ id, input }: Item) {
   const item = menu.find((item) => item.name === id);
   if (item == null) return null;
   return (
-    <div className="divide-y divide-gray-200 space-y-4">
+    <div className="divide-y p-2 my-2 border-red-700 shadow-lg border rounded-xl divide-gray-200 space-y-4">
       <div className="flex justify-between h-20 items-center">
         <img
           src={item.imgLink}
           alt={item.name}
-          className="w-20 h-20 object-cover"
+          className="w-20 h-20 object-cover rounded-xl"
         />
         <div className="flex flex-col items-end text-right">
           <p className="font-semibold">{item.name}</p>

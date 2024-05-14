@@ -27,8 +27,8 @@ const ForgotPassword = () => {
     }
   };
   return (
-    <div className="container mx-auto my-10 rounded py-5 bg-yellow-300 w-full md:w-2/3 lg:w-1/2">
-      <h2 className="text-4xl font-medium mt-10 text-center">Password Reset</h2>
+    <div data-testid="forgot" className="container mx-auto my-10 rounded-xl py-5 text-center bg-yellow-300 w-full md:w-2/3 lg:w-1/2">
+      <h2 className="text-4xl font-medium my-5 text-black text-center tracking-wider">Password Reset</h2>
       <div className="auth-options w-full flex flex-col items-center justify-center">
         <form
           onSubmit={handleForgotPassword}
@@ -70,7 +70,7 @@ const ForgotPassword = () => {
           <div className="flex justify-end">
             <button
               type="submit"
-              className="bg-slate-800 mt-5 w-full px-10 py-2  border-2 border-solid border-mainbg rounded-md text-white hover:scale-95 duration-100 ease-in "
+              className="bg-red-700 mt-5 w-full px-10 py-2 rounded-full text-white hover:scale-95 duration-100 ease-in "
             >
               Send Reset Mail
             </button>

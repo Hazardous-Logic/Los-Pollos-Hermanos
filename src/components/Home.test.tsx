@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 import Home from './Home';
 import '@testing-library/jest-dom/vitest';
 
-describe('Story Component', () => {
+describe('Home Component', () => {
   it('renders without crashing', () => {
     render(<Home />);
     expect(screen.getByTestId('home')).toBeInTheDocument();
