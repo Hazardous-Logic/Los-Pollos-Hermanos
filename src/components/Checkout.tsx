@@ -1,10 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button } from "flowbite-react";
 import {collection, doc, updateDoc, arrayUnion, addDoc } from "firebase/firestore";
 import { db } from "../libs/firebase";
 import { AuthContext } from "../context/AuthContext";
 import { useShoppingCart } from "../context/CartContext";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Item } from "./CartItem";
 import { Timer } from "./Timer";
 
@@ -18,17 +18,26 @@ export interface Order {
   items: Item[];
 }
 
-// export interface CheckoutProps{
-//   total: number;
-//   time: number;
-// }
+export interface CheckoutProps{
+  total: number;
+  time: number;
+}
 
 const Checkout = () => {
   const { currentUser } = useContext(AuthContext);
   const { cartItems, clearCart } = useShoppingCart();
-
+  const navigate = useNavigate();
   //passing props didnt work, this is a workaround
   const location = useLocation();
+  useEffect(() => {
+    if (!location.state) {
+      navigate('/shop');
+    }
+  }, [location.state, navigate]);
+
+  if (!location.state) {
+    return null;
+  }
   const { total, time } = location.state;
 
 

@@ -5,9 +5,9 @@ import Shop from './components/Shop';
 import Foot from './components/Foot';
 import Story from './components/Story';
 import Profile from './components/Profile';
-import { Suspense, useContext, useState } from 'react';
+import { Suspense } from 'react';
 import Loading from './components/Loading';
-import { AuthContext, AuthContextProvider } from './context/AuthContext';
+import { AuthContextProvider } from './context/AuthContext';
 import AuthPages from './components/AuthPages';
 import Login from './components/Login';
 import ForgotPassword from './components/ForgotPassword';
@@ -19,18 +19,12 @@ import Admin from './components/Admin';
 import { ShoppingCart } from './components/ShoppingCart';
 import Checkout from './components/Checkout';
 import Orders from './components/Orders';
-
-
-
-
+import NotFound from './components/NotFound';
 
 function App() {
-
-  // const [deliveryActive, setDeliveryActive] = useState();
   return (
     <Suspense fallback={<Loading />}>
       <AuthContextProvider>
-      {/* <TimerProvider> */}
         <CartProvider>
         <Router>
         <Nav />
@@ -47,15 +41,14 @@ function App() {
             <Route path="/contact" element={<AuthPages><Feedback /></AuthPages>} />
             <Route path="/checkout" element={<AuthPages><Checkout /></AuthPages>} />
             <Route path="/orders" element={<AuthPages><Orders /></AuthPages>} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
           <ShoppingCart/>
           <Foot />
         </Router>
         </CartProvider>
-        {/* </TimerProvider> */}
       </AuthContextProvider>
     </Suspense>
-
   );
 }
 

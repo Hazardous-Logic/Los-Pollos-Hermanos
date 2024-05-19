@@ -162,7 +162,7 @@ const Login = () => {
             </div>
           </div>
           {errHandler.isError ? (
-            <div className="w-[100%] mx-auto md:w-auto bg-red-600 mt-3 rounded-md px-3 py-2 text-white">
+            <div className="w-[100%] text-center mx-auto md:w-auto bg-red-600 mt-3 rounded-md px-3 py-2 text-white">
               {errHandler.errorMsg}
 
               {emailNotVerified ? (

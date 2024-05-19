@@ -3,18 +3,18 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
-//Firebase connection parameters
+// Firebase connection parameters
 const firebaseConfig = {
-  apiKey: "AIzaSyCF7Hu8IuRh-yh3wbRiVxfH0n0E7nOrPXY",
-  authDomain: "los-pollos-hemanos.firebaseapp.com",
-  projectId: "los-pollos-hemanos",
-  storageBucket: "los-pollos-hemanos.appspot.com",
-  messagingSenderId: "346173990369",
-  appId: "1:346173990369:web:d6ebb5021adb23418e5ea0",
-  measurementId: "G-RR3NCS6RHL"
+  apiKey: import.meta.env.VITE_FIREBASE_APIKEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGE_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
-//Initialization of the Authenticator and the database(firestore)
+// Initialization of the Authenticator and the database (firestore)
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);

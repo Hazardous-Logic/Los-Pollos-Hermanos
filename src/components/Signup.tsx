@@ -53,7 +53,10 @@ const Signup = () => {
       navigate("/verify");
     } catch (error: unknown) {
       const err = error as FirebaseError;
-
+      console.log("Firebase Error Code:", err.code); // Debug log
+      console.log("Firebase Error Message:", err.message); // Debug log
+      console.log("Error Object:", err); // Debug log
+      console.log("FIREBASE_ERRORS:", FIREBASE_ERRORS); // Debug log
       setErrHandler({
         isError: true,
         errorMsg: FIREBASE_ERRORS[err.code as keyof typeof FIREBASE_ERRORS],
@@ -158,7 +161,7 @@ const Signup = () => {
           </div>
 
           {errHandler.isError ? (
-            <div className="w-[100%] mx-auto md:w-auto bg-red-600 mt-3 rounded-md px-3 py-2 text-white">
+            <div className="w-[100%] text-center mx-auto md:w-auto bg-red-600 mt-3 rounded-md px-3 py-2 text-white">
               {errHandler.errorMsg}
             </div>
           ) : null}

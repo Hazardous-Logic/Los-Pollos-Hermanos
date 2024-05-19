@@ -22,7 +22,7 @@ const DeleteMenuItem = () => {
 
   return (
     <div data-testid="deleteItem" className="container mx-auto text-center my-10 rounded-xl py-5 bg-yellow-300 w-full md:w-2/3 lg:w-1/2">
-      <h2 className="text-4xl font-medium mt-10 text-black text-center">Delete Menu Item</h2>
+      <h2 className="text-4xl font-medium my-5 text-black text-center tracking-wider">Delete Menu Item</h2>
       <div className="flex flex-wrap mx-3 mb-6">
         <div className="w-full px-3">
           <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="menuItems">
