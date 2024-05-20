@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Button } from "flowbite-react";
-import {collection, doc, updateDoc, arrayUnion, addDoc } from "firebase/firestore";
+import {collection, addDoc } from "firebase/firestore";
 import { db } from "../libs/firebase";
 import { AuthContext } from "../context/AuthContext";
 import { useShoppingCart } from "../context/CartContext";
@@ -68,12 +68,12 @@ const Checkout = () => {
       // console.log(orderRef.id);
       setOrderId(orderRef.id);
       alert("Order placed successfully");
-      if (currentUser) {
-        // Add the order to the user's document
-        await updateDoc(doc(db, "users", currentUser.uid), {
-          orders: arrayUnion(orderRef),
-        });
-      }
+      // if (currentUser) {
+      //   // Add the order to the user's document
+      //   await updateDoc(doc(db, "users", currentUser.uid), {
+      //     orders: arrayUnion(orderRef),
+      //   });
+      // }
 
       setOrder({
         uId: "",
