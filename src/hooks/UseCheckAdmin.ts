@@ -16,8 +16,6 @@ export function UseCheckAdmin(): [boolean, React.Dispatch<React.SetStateAction<b
         const userRef = doc(db, "users", currentUser.uid);
         const userData = await getDoc(userRef);
         const user = userData.data();
-        // console.log(currentUser);
-        // console.log(user);
         if (userData && user && user.role === "admin") {
           setIsAdmin(true);
         } else {

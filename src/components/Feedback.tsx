@@ -2,7 +2,7 @@ import { useState } from "react";
 import { db } from "../libs/firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { Button } from "flowbite-react";
-import { ReviewData } from "../hooks/GetReviews";
+import { ReviewData } from "../hooks/useReviews";
 import { Reviews } from "./Reviews";
 
 const Feedback = () => {

@@ -1,5 +1,5 @@
 import { Rating } from 'flowbite-react';
-import { GetReviews } from '../hooks/GetReviews';
+import { GetReviews } from '../hooks/useReviews';
 
 export function Reviews() {
   const reviews = GetReviews();

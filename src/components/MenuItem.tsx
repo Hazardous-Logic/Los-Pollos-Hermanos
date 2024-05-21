@@ -1,6 +1,6 @@
 import { Button } from "flowbite-react";
 import { useShoppingCart } from "../context/CartContext";
-import { MenuItemData } from "../hooks/GetMenuData";
+import { MenuItemData } from "../hooks/useMenuData";
 
 export function MenuItem({
   name,

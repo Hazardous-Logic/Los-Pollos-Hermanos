@@ -1,7 +1,7 @@
 import { RxCross2 } from "react-icons/rx";
 import { useShoppingCart } from "../context/CartContext";
 import { CartItem } from "./CartItem";
-import { GetMenuData } from "../hooks/GetMenuData";
+import { GetMenuData } from "../hooks/useMenuData";
 import { Button } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';

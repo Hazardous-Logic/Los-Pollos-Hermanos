@@ -47,7 +47,6 @@ const Signup = () => {
         email: formValues.get("email") as string,
         timeStamp: serverTimestamp(),
         role: "user",
-        orders:[],
       });
 
       navigate("/verify");

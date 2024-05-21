@@ -1,4 +1,4 @@
-import { GetUserOrders } from "../hooks/GetUserOrders";
+import { GetUserOrders } from "../hooks/useUserOrders";
 
 const Orders = () =>{
 

@@ -1,5 +1,5 @@
 import { useShoppingCart } from "../context/CartContext";
-import { GetMenuData } from "../hooks/GetMenuData";
+import { GetMenuData } from "../hooks/useMenuData";
 
 
 export interface Item {

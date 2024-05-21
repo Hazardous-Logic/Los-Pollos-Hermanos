@@ -2,7 +2,7 @@ import { useState } from "react";
 import { doc, deleteDoc } from "firebase/firestore"; 
 import { db } from "../libs/firebase"; 
 import { Button } from "flowbite-react";
-import { GetMenuData } from "../hooks/GetMenuData";
+import { GetMenuData } from "../hooks/useMenuData";
 
 const DeleteMenuItem = () => {
   const [selectedItem, setSelectedItem] = useState<string>("");

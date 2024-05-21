@@ -5,7 +5,7 @@ import { Link, NavLink , useNavigate} from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from '../libs/firebase';
 import { useShoppingCart } from "../context/CartContext";
-import { UseCheckAdmin } from "../hooks/UseCheckAdmin";
+import { UseCheckAdmin } from "../hooks/useCheckAdmin";
 
 function Nav() {
   const { currentUser } = useContext(AuthContext);

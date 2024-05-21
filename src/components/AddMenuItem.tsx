@@ -2,7 +2,7 @@ import { useState } from "react";
 import { collection, setDoc, doc } from "firebase/firestore"; 
 import { db } from "../libs/firebase"; 
 import { Button } from "flowbite-react";
-import { MenuItemData } from "../hooks/GetMenuData";
+import { MenuItemData } from "../hooks/useMenuData";
 
 const AddMenuItem = () => {
   const [newMenuItem, setNewMenuItem] = useState<MenuItemData>({name: "", imgLink: "", description: "", price: 0, prepTime: 0});
