@@ -38,21 +38,7 @@ const mockReviews = [
   }
 ];
 
-
-
 describe('Reviews Component', () => {
-
-  // it('displays a message when there are no reviews', () => {
-  //   cleanup();
-  //   vi.mock('../hooks/GetReviews', () => ({
-  //     GetReviews: vi.fn(() => [])
-  //   }));
-
-  //   render(<Reviews />);
-  //   expect(screen.getByText(/No reviews available/i)).toBeInTheDocument();
-  //   screen.debug();
-  //   cleanup();
-  // });
 
   it('renders top five reviews sorted by rating', () => {
     // Mocking GetReviews hook

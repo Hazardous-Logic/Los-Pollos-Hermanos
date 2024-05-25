@@ -12,9 +12,6 @@ describe('CartItem', () => {
     };
 
     render(<CartItem {...mockItem} />);
-    //Will output the rendered DOM for debugging
-
-    //Optional: Check for specific output to verify rendering
-   //expect(1).toBeTruthy;
+    screen.debug();
   });
 });

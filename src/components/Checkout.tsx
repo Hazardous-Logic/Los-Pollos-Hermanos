@@ -30,8 +30,6 @@ const Checkout = () => {
   }
   const { total, time } = location.state;
 
-
-
   const [checkoutDone, SetCheckoutDone] = useState(false);
   const [orderId, setOrderId] = useState(""); // State to store the order ID
   const [order, setOrder] = useState<Order>({
@@ -74,8 +72,6 @@ const Checkout = () => {
       alert("Error placing order: " + error);
     }
   };
-
-  
 
   return (
     <>

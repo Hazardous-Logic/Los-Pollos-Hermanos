@@ -23,17 +23,4 @@ describe('Admin Component', () => {
       screen.debug();
       });
   
-    // it('should show admin features for admin user', () => {
-    //   vi.mock('../hooks/UseCheckAdmin', () => ({
-    //     UseCheckAdmin: () => [true, vi.fn()]
-    //   }));
-  
-    //   render(
-    //     <MemoryRouter>
-    //       <Admin />
-    //     </MemoryRouter>
-    //   );
-  
-    //  expect(screen.getByTestId('admin')).toBeInTheDocument();
-    // });
   });

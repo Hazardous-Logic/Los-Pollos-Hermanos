@@ -63,7 +63,6 @@ export function MenuItem({
     </Button>
 
   </div>
-    {/* <p >Quantity: </p> */}
 </div>
       )}
     </div>

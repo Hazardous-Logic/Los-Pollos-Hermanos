@@ -1,6 +1,6 @@
 // DeleteMenuItem.test.tsx
-import { describe, it, expect, vi, afterEach } from 'vitest';
-import { render, fireEvent, screen, cleanup } from '@testing-library/react';
+import { describe, it, expect, vi } from 'vitest';
+import { render, fireEvent, screen } from '@testing-library/react';
 import DeleteMenuItem from './DeleteMenuItem';
 import '@testing-library/jest-dom/vitest';
 
@@ -14,11 +14,6 @@ const mockMenu = [
 vi.mock('../hooks/useMenuData', () => ({
   GetMenuData: vi.fn(() => mockMenu)
 }));
-
-// afterEach(() => {
-//   cleanup();
-//   vi.restoreAllMocks();
-// });
 
 describe('DeleteMenuItem Component with mock data', () => {
   render(<DeleteMenuItem />);

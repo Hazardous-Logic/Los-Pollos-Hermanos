@@ -8,7 +8,6 @@ import React from 'react';
 import { User } from 'firebase/auth';
 import '@testing-library/jest-dom/vitest';
 
-
 // Define the type for the context value
 interface AuthContextType {
   currentUser: User | null;
@@ -28,9 +27,6 @@ const renderWithAuthContext = (ui: React.ReactElement, providerProps: AuthContex
 describe('Nav Component', () => {
   it('should show login button when user is not logged in', () => {
     renderWithAuthContext(<Nav />, { currentUser: null });
-    // const loginButton = screen.getByText(/Login \/ Register/i)
-    // expect(loginButton).toBeInTheDocument();
-    // expect(loginButton).toHaveTextContent(/Login \/ Register/i);
     expect(screen.getByText(/Login \/ Register/i)).toBeInTheDocument();
     screen.debug();
   });

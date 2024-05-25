@@ -63,10 +63,10 @@ const Login = () => {
       }
     } catch (error: unknown) {
       const err = error as FirebaseError;
-      // console.log("Firebase Error Code:", err.code); // Debug log
-      // console.log("Firebase Error Message:", err.message); // Debug log
-      // console.log("Error Object:", err); // Debug log
-      // console.log("FIREBASE_ERRORS:", FIREBASE_ERRORS); // Debug log
+      console.log("Firebase Error Code:", err.code); // Debug log
+      console.log("Firebase Error Message:", err.message); // Debug log
+      console.log("Error Object:", err); // Debug log
+      console.log("FIREBASE_ERRORS:", FIREBASE_ERRORS); // Debug log
       console.log("Error Message:", FIREBASE_ERRORS[err.code as keyof typeof FIREBASE_ERRORS]); // Debug log
       setErrHandler({
         isError: true,

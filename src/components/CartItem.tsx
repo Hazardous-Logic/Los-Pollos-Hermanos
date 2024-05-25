@@ -1,7 +1,6 @@
 import { useShoppingCart } from "../context/CartContext";
 import { GetMenuData } from "../hooks/useMenuData";
 
-
 export interface Item {
   id: string;
   input: number;

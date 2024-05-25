@@ -3,7 +3,7 @@ import { describe, it, expect, vi} from 'vitest';
 import { render, screen } from '@testing-library/react';
 import GoogleLogin from './GoogleLogin';
 import '@testing-library/jest-dom/vitest';
-import { MemoryRouter, createMemoryRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 
 describe('GoogleLogin Component', () => {
   it('renders without crashing', () => {
