@@ -10,7 +10,7 @@ export function CartItem({ id, input }: Item) {
   const { removeItemFromCart } = useShoppingCart();
   const menu = GetMenuData();
   const item = menu.find((item) => item.name === id);
-  if (item == null) return null;
+  if (item == null) return (<div>Item Load Error</div>);
   return (
     <div className="divide-y p-2 my-2 border-red-700 shadow-lg border rounded-xl divide-gray-200 space-y-4">
       <div className="flex justify-between h-20 items-center">
