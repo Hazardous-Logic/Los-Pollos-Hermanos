@@ -1,14 +1,22 @@
 import { useContext, useEffect, useState } from "react";
 import { db } from "../libs/firebase";
 import { AuthContext } from "../context/AuthContext";
-import { Order } from "../components/Checkout";
 import { collection, getDocs, query, where } from "firebase/firestore";
+import { Item } from "../components/CartItem";
 
+export interface Order {
+  uId : string;
+  fullName: string;
+  address: string;
+  city: string;
+  postalCode: string;
+  phoneNumber: string;
+  items: Item[];
+}
 
 export function GetUserOrders() {
     const { currentUser } = useContext(AuthContext);
     const [orders, setOrders] = useState<Order[]>([]);
-
 
     useEffect(() => {
         const getOrders = async () => {

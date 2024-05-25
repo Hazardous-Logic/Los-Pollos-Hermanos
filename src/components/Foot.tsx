@@ -23,20 +23,6 @@ function Foot() {
                 <Footer.Link href="tel:+36 30 939 9075">Call us!: +36 30 939 9075</Footer.Link>
               </Footer.LinkGroup>
             </div>
-            {/* <div>
-              <Footer.Title title="Follow us" />
-              <Footer.LinkGroup col>
-                <Footer.Link href="#">Github</Footer.Link>
-                <Footer.Link href="#">Discord</Footer.Link>
-              </Footer.LinkGroup>
-            </div> */}
-            {/* <div>
-              <Footer.Title title="Legal" />
-              <Footer.LinkGroup col>
-                <Footer.Link href="#">Privacy Policy</Footer.Link>
-                <Footer.Link href="#">Terms &amp; Conditions</Footer.Link>
-              </Footer.LinkGroup>
-            </div> */}
           </div>
         </div>
         <Footer.Divider className='border-red-500' />

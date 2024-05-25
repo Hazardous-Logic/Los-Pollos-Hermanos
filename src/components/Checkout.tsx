@@ -5,18 +5,8 @@ import { db } from "../libs/firebase";
 import { AuthContext } from "../context/AuthContext";
 import { useShoppingCart } from "../context/CartContext";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Item } from "./CartItem";
 import { Timer } from "./Timer";
-
-export interface Order {
-  uId : string;
-  fullName: string;
-  address: string;
-  city: string;
-  postalCode: string;
-  phoneNumber: string;
-  items: Item[];
-}
+import { Order } from "../hooks/useUserOrders";
 
 export interface CheckoutProps{
   total: number;
@@ -44,7 +34,6 @@ const Checkout = () => {
 
   const [checkoutDone, SetCheckoutDone] = useState(false);
   const [orderId, setOrderId] = useState(""); // State to store the order ID
-  //const [orderId, setOrderId] = useState<string | null>(null); // State to store the order ID
   const [order, setOrder] = useState<Order>({
     uId : currentUser ? currentUser.uid || "" : "",
     fullName: currentUser ? currentUser.displayName || "" : "",
@@ -65,15 +54,8 @@ const Checkout = () => {
     try {
       const orderData = { ...order, items: cartItems };
       const orderRef = await addDoc(collection(db, "orders"), orderData);
-      // console.log(orderRef.id);
       setOrderId(orderRef.id);
       alert("Order placed successfully");
-      // if (currentUser) {
-      //   // Add the order to the user's document
-      //   await updateDoc(doc(db, "users", currentUser.uid), {
-      //     orders: arrayUnion(orderRef),
-      //   });
-      // }
 
       setOrder({
         uId: "",

@@ -63,7 +63,7 @@ const VerifyEmail = () => {
 
                   <Link to="/login">
                     <Button color="failure" pill size="lg">
-                      Login in
+                      Login
                     </Button>
                   </Link>
                 </div>

@@ -11,7 +11,7 @@ const mockMenu = [
 ];
 
 // Mock the GetMenuData hook
-vi.mock('../hooks/GetMenuData', () => ({
+vi.mock('../hooks/useMenuData', () => ({
   GetMenuData: vi.fn(() => mockMenu)
 }));
 

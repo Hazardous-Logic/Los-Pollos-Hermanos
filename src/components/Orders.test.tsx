@@ -29,7 +29,7 @@ const mockOrders = [
 ];
 
 // Mocking GetUserOrders hook
-vi.mock('../hooks/GetUserOrders', () => ({
+vi.mock('../hooks/useUserOrders', () => ({
   GetUserOrders: vi.fn(() => mockOrders)
 }));
 

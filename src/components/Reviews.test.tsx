@@ -1,9 +1,8 @@
 // Reviews.test.tsx
-import { describe, it, expect, vi, afterEach, beforeEach } from 'vitest';
+import { describe, it, expect, vi} from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 import {Reviews} from './Reviews';
 import '@testing-library/jest-dom/vitest';
-import React from 'react';
 
 // Mock data for reviews
 const mockReviews = [
@@ -57,7 +56,7 @@ describe('Reviews Component', () => {
 
   it('renders top five reviews sorted by rating', () => {
     // Mocking GetReviews hook
-    vi.mock("../hooks/GetReviews", () => ({
+    vi.mock("../hooks/useReviews", () => ({
       GetReviews: vi.fn(() => mockReviews),
     }));
 
