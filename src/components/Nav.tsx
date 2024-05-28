@@ -71,7 +71,7 @@ function Nav() {
         <Navbar.Collapse>
           <Navbar.Link as={NavLink} to="/" active className="text-xl">Home</Navbar.Link>
           <Navbar.Link as={NavLink} to="/shop" className="text-xl">Order</Navbar.Link>
-          <Navbar.Link as={NavLink} to="/contact" className="text-xl">Feedback</Navbar.Link>
+          <Navbar.Link as={NavLink} to="/feedback" className="text-xl">Feedback</Navbar.Link>
           <Navbar.Link as={NavLink} to="/story" className="text-xl">Our Story</Navbar.Link>
           {isAdmin && <Navbar.Link as={NavLink} to="/admin" className="text-xl">Admin</Navbar.Link>}
         </Navbar.Collapse>

@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { db } from "../libs/firebase";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { Button } from "flowbite-react";
 import { ReviewData } from "../hooks/useReviews";
 import { Reviews } from "./Reviews";
+import { useNavigate} from 'react-router-dom';
 
 const Feedback = () => {
     const [review, setReview] = useState<ReviewData>({
@@ -12,6 +13,8 @@ const Feedback = () => {
         comments: "",
         rating: 0 
     });
+
+    const navigate = useNavigate();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement> | React.ChangeEvent<HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -23,7 +26,13 @@ const Feedback = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            await addDoc(collection(db, "feedback"), review);
+
+            const reviewWithTimestamp = {
+                ...review,
+                timestamp: serverTimestamp()  // Add the current timestamp
+            };
+
+            await addDoc(collection(db, "feedback"), reviewWithTimestamp);
             alert("Review added successfully");
             setReview({
                 name: "",
@@ -31,6 +40,8 @@ const Feedback = () => {
                 comments: "",
                 rating: 0 // Reset rating to 0 after submission
             });
+            navigate("/");
+
         } catch (error) {
             console.error("Error adding review: ", error);
             alert("Error adding review: " + error);
@@ -47,7 +58,7 @@ const Feedback = () => {
                         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="name">
                             Your Name
                         </label>
-                        <input className=" shadow-xl appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="name" type="text" name="name" value={review.name} onChange={handleChange} />
+                        <input className=" shadow-xl appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="name" type="text" name="name" required value={review.name} onChange={handleChange} />
                     </div>
                 </div>
                 <div className="flex flex-wrap mx-3 mb-6">
@@ -55,7 +66,7 @@ const Feedback = () => {
                         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="email">
                             Your Email
                         </label>
-                        <input className=" shadow-xl appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="email" type="email" name="email" value={review.email} onChange={handleChange} />
+                        <input className=" shadow-xl appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="email" type="email" name="email" required value={review.email} onChange={handleChange} />
                     </div>
                 </div>
                 <div className="flex flex-wrap mx-3 mb-6">
@@ -63,7 +74,7 @@ const Feedback = () => {
                         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="rating">
                             Rating
                         </label>
-                        <select className="shadow-xl appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="rating" name="rating" value={review.rating} onChange={handleChange}>
+                        <select className="shadow-xl appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="rating" name="rating" required value={review.rating} onChange={handleChange}>
                             <option value="0">0</option>
                             <option value="1">1 ⭐</option>
                             <option value="2">2 ⭐⭐</option>
@@ -78,7 +89,7 @@ const Feedback = () => {
                         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="comments">
                             Comments
                         </label>
-                        <textarea className="shadow-xl appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="comments" name="comments" rows={3} value={review.comments} onChange={handleChange}></textarea>
+                        <textarea className="shadow-xl appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="comments" name="comments" required rows={3} value={review.comments} onChange={handleChange}></textarea>
                     </div>
                 </div>
                 <Button className="mx-auto" pill color="failure" type="submit">
@@ -86,7 +97,7 @@ const Feedback = () => {
                 </Button>
             </form>
         </div>
-            <Reviews />
+            <Reviews/>
             </>
         
     );

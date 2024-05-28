@@ -45,7 +45,7 @@ describe('Reviews Component', () => {
       GetReviews: vi.fn(() => mockReviews),
     }));
 
-    render(<Reviews />);
+    render(<Reviews  />);
     expect(screen.getByText(/Latest Reviews/i)).toBeInTheDocument();
     const ratings = screen.getAllByText(/out of 5/i);
     expect(ratings.length).toBe(5); // Ensures only top five reviews are shown

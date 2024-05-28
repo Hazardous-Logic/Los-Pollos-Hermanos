@@ -7,6 +7,7 @@ import { db } from "../libs/firebase";
     email: string;
     comments: string;
     rating: number;
+    timestamp?: { toMillis: () => number }; 
   }
 
 export function GetReviews() {
@@ -19,7 +20,7 @@ export function GetReviews() {
       setReviews(reviewData);
     }
     fetchReviews();
-  }, [db]);
+  }, []);
 
   return reviews;
 }

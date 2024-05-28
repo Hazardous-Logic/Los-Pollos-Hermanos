@@ -8,7 +8,12 @@ export function Reviews() {
     return <div>No reviews available</div>;
   }
   
-  const sortedReviews = [...reviews].sort((a, b) => b.rating - a.rating);
+  const sortedReviews = [...reviews].sort((a, b) => {
+    if (a.timestamp && b.timestamp) {
+      return b.timestamp.toMillis() - a.timestamp.toMillis();
+    }
+    return 0;
+  });
   
   const topFiveReviews = sortedReviews.slice(0, 5);
 

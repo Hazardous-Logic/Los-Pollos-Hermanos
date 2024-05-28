@@ -38,7 +38,7 @@ function App() {
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/admin" element={<AuthPages><Admin /></AuthPages>} />
             <Route path="/profile" element={<AuthPages><Profile /></AuthPages>} />
-            <Route path="/contact" element={<AuthPages><Feedback /></AuthPages>} />
+            <Route path="/feedback" element={<AuthPages><Feedback /></AuthPages>} />
             <Route path="/checkout" element={<AuthPages><Checkout /></AuthPages>} />
             <Route path="/orders" element={<AuthPages><Orders /></AuthPages>} />
             <Route path="*" element={<NotFound />} />
