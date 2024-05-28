@@ -5,11 +5,11 @@ import { Link, NavLink , useNavigate} from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from '../libs/firebase';
 import { useShoppingCart } from "../context/CartContext";
-import { UseCheckAdmin } from "../hooks/useCheckAdmin";
+import { useCheckAdmin } from "../hooks/useCheckAdmin";
 
 function Nav() {
   const { currentUser } = useContext(AuthContext);
-  const [isAdmin, setIsAdmin] = UseCheckAdmin();
+  const [isAdmin, setIsAdmin] = useCheckAdmin();
   const { cartItems , clearCart } = useShoppingCart();
   const navigate = useNavigate();
   const handleLogout = async () => {

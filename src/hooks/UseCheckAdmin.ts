@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { db } from "../libs/firebase";
 import { doc, getDoc } from "firebase/firestore";
 
-export function UseCheckAdmin(): [boolean, React.Dispatch<React.SetStateAction<boolean>>] {
+export function useCheckAdmin(): [boolean, React.Dispatch<React.SetStateAction<boolean>>] {
   const [isAdmin, setIsAdmin] = useState(false);
   const { currentUser } = useContext(AuthContext);
 

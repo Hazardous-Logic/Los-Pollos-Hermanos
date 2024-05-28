@@ -1,11 +1,11 @@
 import { Button } from "flowbite-react";
 import AddMenuItem from "./AddMenuItem";
 import DeleteMenuItem from "./DeleteMenuItem";
-import { UseCheckAdmin } from "../hooks/useCheckAdmin";
+import { useCheckAdmin } from "../hooks/useCheckAdmin";
 import { useNavigate } from "react-router-dom";
 
 const Admin = () => {
-  const [isAdmin] = UseCheckAdmin();
+  const [isAdmin] = useCheckAdmin();
   const navigate = useNavigate();
 
   return (

@@ -8,8 +8,8 @@ import '@testing-library/jest-dom/vitest';
 describe('Admin Component', () => {  
     it('should show not allowed message when user is not an admin', () => {
         
-      vi.mock('../hooks/UseCheckAdmin', () => ({
-        UseCheckAdmin: () => [false, vi.fn()]
+      vi.mock('../hooks/useCheckAdmin', () => ({
+        useCheckAdmin: () => [false, vi.fn()]
       }));
   
       render(

@@ -1,5 +1,5 @@
 import { ReactNode, createContext, useContext } from "react";
-import { useLocalStorage } from "../hooks/UseLocalStorage";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 type CartItem = {
   id: string;
