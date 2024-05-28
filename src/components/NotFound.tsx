@@ -1,5 +1,3 @@
-// NotFound.tsx
-
 import { Button } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
 

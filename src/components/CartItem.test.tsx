@@ -27,7 +27,6 @@ describe('CartItem', () => {
 
     render(<CartItem {...mockItem} />);
     screen.debug();
-    
     // Verify the item details are rendered correctly
     expect(screen.getByText('1')).toBeInTheDocument();
     expect(screen.getByText('Quantity: 1')).toBeInTheDocument();

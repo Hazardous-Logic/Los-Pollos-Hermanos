@@ -1,4 +1,4 @@
-import {GoogleAuthProvider,getRedirectResult, signInWithRedirect} from "firebase/auth";
+import { GoogleAuthProvider,getRedirectResult, signInWithRedirect } from "firebase/auth";
 import { useState, useEffect } from "react";
 import { auth, db } from "../libs/firebase";
 import { useNavigate } from "react-router-dom";

@@ -1,4 +1,3 @@
-// Orders.test.tsx
 import { describe, it, expect, vi, afterEach } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 import Orders from './Orders';

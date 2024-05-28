@@ -3,13 +3,6 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import Feedback from './Feedback';
 import '@testing-library/jest-dom/vitest';
 
-// Mock the Firestore functions
-// vi.mock('../libs/firebase', () => ({
-//   db: {},
-//   collection: vi.fn(() => 'feedback'),
-//   addDoc: vi.fn(() => Promise.resolve({ id: '123' }))
-// }));
-
 describe('Feedback Component', () => {
   it('renders without crashing', () => {
     render(<Feedback />);

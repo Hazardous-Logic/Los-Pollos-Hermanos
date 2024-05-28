@@ -1,5 +1,4 @@
 //Custom Hook to check if the user is an admin
-
 import { AuthContext } from "../context/AuthContext";
 import { useContext, useEffect, useState } from "react";
 import { db } from "../libs/firebase";
