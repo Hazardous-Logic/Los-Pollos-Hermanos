@@ -1,11 +1,7 @@
 import { useState, useEffect } from "react";
 
 export function Timer({ deliveryTime }: { deliveryTime: number }) {
-    // const initialSeconds = parseInt(localStorage.getItem("timerSeconds") || "0", 10);
-    // const initialMinutes = parseInt(localStorage.getItem("timerMinutes") || deliveryTime.toString(), 10);
 
-    // const [seconds, setSeconds] = useState(initialSeconds);
-    // const [minutes, setMinutes] = useState(initialMinutes);
     const [timeUp, settimeUp] = useState(false);
     const [seconds, setSeconds] = useState(0);
     const [minutes, setMinutes] = useState(deliveryTime);
@@ -26,12 +22,6 @@ export function Timer({ deliveryTime }: { deliveryTime: number }) {
 
         return () => clearInterval(interval);
     }, [seconds, minutes]);
-
-    // Save timer state to localStorage
-    // useEffect(() => {
-    //     localStorage.setItem("timerSeconds", seconds.toString());
-    //     localStorage.setItem("timerMinutes", minutes.toString());
-    // }, [seconds, minutes]);
 
     //radius
     const size = 210;
